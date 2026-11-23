@@ -35,7 +35,8 @@ pipeline {
     DEPLOY_PATH    = '/var/www/secret.seg.br/'     // web root (trailing slash matters for rsync)
     DEPLOY_CRED_ID = 'secret-site-deploy-key'      // Jenkins "SSH Username with private key" credential
     TOOLS          = "${WORKSPACE}/.tools"
-    PATH           = "${WORKSPACE}/.tools/bin:${WORKSPACE}/.venv/bin:${env.PATH}"
+    // Homebrew paths are included because Jenkins on macOS starts with a minimal PATH.
+    PATH           = "${WORKSPACE}/.tools/bin:${WORKSPACE}/.venv/bin:/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
   }
 
   stages {
@@ -45,10 +46,18 @@ pipeline {
           set -eu
           mkdir -p "$TOOLS/bin"
           if ! "$TOOLS/bin/hugo" version 2>/dev/null | grep -q "v${HUGO_VERSION}"; then
-            echo "Installing Hugo ${HUGO_VERSION}"
-            curl -fsSL -o /tmp/hugo.tgz \
-              "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
-            tar -xzf /tmp/hugo.tgz -C "$TOOLS/bin" hugo
+            # Pick the right Hugo build for this agent (macOS or Linux, Intel or ARM).
+            case "$(uname -s)-$(uname -m)" in
+              Darwin-*)        PKG=darwin-universal ;;
+              Linux-x86_64)    PKG=linux-amd64 ;;
+              Linux-aarch64|Linux-arm64) PKG=linux-arm64 ;;
+              *) echo "Unsupported platform: $(uname -s)-$(uname -m)"; exit 1 ;;
+            esac
+            echo "Installing Hugo ${HUGO_VERSION} (${PKG})"
+            curl -fsSL -o "$TOOLS/hugo.tgz" \
+              "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_${PKG}.tar.gz"
+            tar -xzf "$TOOLS/hugo.tgz" -C "$TOOLS/bin" hugo
+            rm -f "$TOOLS/hugo.tgz"
           fi
           hugo version
           [ -x .venv/bin/python ] || python3 -m venv .venv
