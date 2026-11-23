@@ -1,0 +1,6 @@
+{{- if or .Params.email .Params.links }}
+<ul class="social">
+  {{- with .Params.email }}<li><a href="mailto:{{ . }}" aria-label="Email">{{ partial "icon.html" "email" }}</a></li>{{ end }}
+  {{- range .Params.links }}<li><a href="{{ .url }}" rel="noopener" aria-label="{{ .type | humanize }}">{{ partial "icon.html" .type }}</a></li>{{ end }}
+</ul>
+{{- end }}

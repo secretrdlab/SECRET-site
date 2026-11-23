@@ -1,0 +1,17 @@
+{{- /*
+  Responsive image from assets/ or a page resource.
+  Usage: {{ partial "img.html" (dict "src" "images/awards/Tempest.jpg" "width" 900 "alt" "..." "class" "...") }}
+         {{ partial "img.html" (dict "res" $resource "width" 400 "alt" "...") }}
+*/ -}}
+{{- $r := .res | default (resources.Get .src) }}
+{{- with $r }}
+  {{- $w := $.width | default 1200 }}
+  {{- $img := . }}
+  {{- if and (gt .Width $w) (ne .MediaType.SubType "svg") }}
+    {{- $fmt := cond (eq .MediaType.SubType "png") "webp" "jpg" }}
+    {{- $img = .Resize (printf "%dx %s" $w $fmt) }}
+  {{- end }}
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.alt }}"{{ with $.class }} class="{{ . }}"{{ end }} loading="{{ $.loading | default "lazy" }}" decoding="async">
+{{- else }}
+  {{- warnf "img.html: image not found: %v" .src }}
+{{- end }}

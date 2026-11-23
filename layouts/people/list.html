@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="page-head">
+  <div class="container"><h1>{{ .Title }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</div>
+</div>
+<div class="container page-body">
+  {{- $people := .Pages }}
+  {{- range site.Params.peopleGroups }}
+    {{- $members := where $people "Params.group" . }}
+    {{- if $members }}
+    <h2 class="group-title">{{ . }}</h2>
+    <div class="people-grid">{{ range sort $members "Params.last_name" }}{{ partial "person-card.html" . }}{{ end }}</div>
+    {{- end }}
+  {{- end }}
+</div>
+{{ end }}

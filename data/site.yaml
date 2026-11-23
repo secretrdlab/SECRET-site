@@ -1,0 +1,58 @@
+# Home page texts. Edit freely — Markdown is allowed in "subtitle", "text" and "description" fields.
+
+hero:
+  title: Keep **SECRET**
+  subtitle: SECurity & Reverse Engineering Team
+  background: images/background.png      # file in assets/
+
+about:
+  title: About Us
+  subtitle: SECRET is an information security and cybersecurity research group at the Federal University of Paraná (UFPR), Brazil. Our goal is to advance the state of the art in computer security and security data analysis, providing all solutions to the community.
+  items:
+    - name: Education
+      description: Secure Programming & Malware Analysis Courses
+      icon: graduation-cap               # graduation-cap | code | rocket | shield | bug | lock
+    - name: Research
+      description: Towards increasing malware analysis, detection and prevention
+      icon: code
+    - name: Development
+      description: Developing tools and solutions to the community
+      icon: rocket
+
+university:
+  logo: images/logo_ufpr.png
+  text: An InfoSec and Cybersecurity Research Group at the Federal University of Paraná
+
+people:
+  title: People
+  subtitle: Current and former researchers working @ SECRET
+
+awards:
+  title: Awards
+  subtitle: Our researchers are recognized by their hard work worldwide.
+  background: images/awards_fig.jpg
+
+partners:
+  title: Partners
+  subtitle: We have partners worldwide. Check out their works too!
+
+publications:
+  title: Recent Publications
+  subtitle: Keep in touch with our researches
+  background: images/books.jpg
+
+contact:
+  title: University Address
+  background: images/dinf.jpg
+  email: secret@inf.ufpr.br
+  street: R. Evaristo F. Ferreira da Costa, 383-391
+  city: Curitiba
+  region: PR
+  postcode: 82590-300
+  country: Brazil
+  latitude: -25.451115
+  longitude: -49.232082
+
+footer:
+  text: "[Informatics Department (DInf) - UFPR](https://web.inf.ufpr.br/dinf/)"
+  owner: SECRET - SECurity & Reverse Engineering Team laboratory

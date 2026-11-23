@@ -1,0 +1,4 @@
+{{- /* Returns a resized background-image URL for a file in assets/. */ -}}
+{{- $r := resources.Get . -}}
+{{- $fmt := cond (eq $r.MediaType.SubType "png") "webp" "jpg" -}}
+{{- return ($r.Resize (printf "1920x %s q70" $fmt)).RelPermalink -}}

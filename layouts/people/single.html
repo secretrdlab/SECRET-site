@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{- $slug := path.Base .File.Dir }}
+{{- $keys := index site.Data.generated.people_pubs $slug | default slice }}
+<div class="container page-body profile">
+  <aside class="profile-card">
+    {{- with .Resources.GetMatch "avatar.*" }}
+      {{- $a := .Fill "400x400 Center q80" }}
+      <img class="avatar avatar-lg" src="{{ $a.RelPermalink }}" width="200" height="200" alt="{{ $.Title }}">
+    {{- else }}
+      <span class="avatar avatar-lg avatar-initials">{{ substr .Params.first_name 0 1 }}{{ substr (index (last 1 (split .Params.last_name " ")) 0) 0 1 }}</span>
+    {{- end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.role }}<p class="person-role">{{ . }}</p>{{ end }}
+    <p class="org"><a href="https://www.ufpr.br" rel="noopener">Federal University of Paraná (UFPR)</a></p>
+    {{ partial "person-links.html" . }}
+  </aside>
+  <div class="profile-main">
+    {{ with .Params.bio }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <div class="profile-cols">
+      {{- with .Params.interests }}
+      <div>
+        <h2>Interests</h2>
+        <ul class="plain">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{- end }}
+      {{- with .Params.education }}
+      <div>
+        <h2>Education</h2>
+        <ul class="education">
+          {{- range . }}
+          <li>{{ partial "icon.html" "graduation-cap" }}<div><strong>{{ .course }}{{ with .year }}, {{ . }}{{ end }}</strong><br><span>{{ .institution }}</span></div></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+    {{- if $keys }}
+    <h2>Publications with SECRET</h2>
+    <ul class="pub-list">
+      {{- range (site.Data.generated.publications | append site.Data.generated.theses) }}
+        {{- if in $keys .key }}{{ partial "pub-item.html" (dict "p" .) }}{{ end }}
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+</div>
+{{ end }}

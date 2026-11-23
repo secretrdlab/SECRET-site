@@ -1,0 +1,89 @@
+# Hugo configuration for the SECRET website.
+# Most content lives in data/*.yaml, content/ and bibliography/*.bib — you rarely need to touch this file.
+
+baseURL = "https://secret.seg.br/"
+title = "SECRET - SECurity & Reverse Engineering Team"
+languageCode = "en-us"
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 30
+removePathAccents = true
+disableKinds = ["taxonomy", "term"]
+
+[pagination]
+  pagerSize = 10
+
+# Keep the old Hugo Blox URLs working: /author/<name>/
+[permalinks.page]
+  people = "/author/:contentbasename/"
+[permalinks.section]
+  people = "/people/"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]   # JSON = search index (/index.json)
+  section = ["HTML", "RSS"]
+
+[markup.goldmark.renderer]
+  unsafe = true   # allow raw HTML inside Markdown posts
+
+[imaging]
+  quality = 80
+  resampleFilter = "Lanczos"
+
+[params]
+  description = "SECRET is an information security and cybersecurity research group at the Federal University of Paraná (UFPR), Brazil."
+  twitter = "GetResearchDev"
+  # Order in which member groups are shown on the home page.
+  peopleGroups = ["Faculty", "PhD Students", "MSc Students", "Undergraduate Students", "Alumni / Past Visitors"]
+  recentPublications = 5
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menus.main]]
+    name = "About"
+    url = "/#about"
+    weight = 20
+  [[menus.main]]
+    name = "People"
+    url = "/#people"
+    weight = 30
+  [[menus.main]]
+    name = "Awards"
+    url = "/#awards"
+    weight = 40
+  [[menus.main]]
+    name = "Partners"
+    url = "/#partners"
+    weight = 50
+  [[menus.main]]
+    name = "Posts"
+    url = "/post/"
+    weight = 55
+  [[menus.main]]
+    name = "Publications"
+    url = "/publication/"
+    weight = 60
+  [[menus.main]]
+    name = "T&D"
+    url = "/thesis-dissertations/"
+    weight = 65
+  [[menus.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 70
+
+# Expose bibliography/ to Hugo so the full .bib files can be published for download.
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+[[module.mounts]]
+  source = "bibliography"
+  target = "assets/bibliography"
+
+# Only publish resized images, not the full-size originals in page bundles.
+[[cascade]]
+  [cascade.build]
+    publishResources = false

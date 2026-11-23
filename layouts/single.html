@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article>
+  <div class="page-head">
+    <div class="container narrow">
+      <h1>{{ .Title }}</h1>
+      {{- if eq .Section "post" }}
+      <p class="meta">{{ .Date.Format "Jan 2, 2006" }} · {{ .ReadingTime }} min read</p>
+      {{- end }}
+    </div>
+  </div>
+  <div class="container narrow page-body prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

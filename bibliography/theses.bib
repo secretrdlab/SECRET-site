@@ -1,0 +1,85 @@
+% SECRET — Theses & Dissertations developed in the lab and/or advised/co-advised by SECRET members.
+% Single source of truth for /thesis-dissertations/ on the site. Use @phdthesis or @mastersthesis.
+% The `advisor` field (biblatex-compatible) lists advisors/co-advisors separated by `and`.
+
+@mastersthesis{machnicki2025msc,
+  author   = {Machnicki, Raphael Kaviak},
+  title    = {Sapo-boi: Um sistema de detecção de intrusões por assinatura em espaços de kernel e usuário utilizando BPF e XDP},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2025},
+  advisor  = {André Ricardo Abed Grégio and Vinícius Fülber Garcia},
+  type     = {Master dissertation},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/97900},
+  abstract = {Network Intrusion Detection Systems (NIDS) analyze different regions of a packet to detect known attack patterns. The advent of XDP has enabled the implementation of NIDS within the context of the Linux kernel network stack. In this work, we propose “SAPO-BOI,” a NIDS composed of two modules: the Suspicion module (an XDP program that processes packets in parallel, discarding non-suspicious ones and redirecting suspicious packets for user-space decision) and the Evaluation module (a user-space process capable of finding the rule that analyzes the suspicious packet in constant time and generating alerts). Using a modified subset of Snort rules, SAPO-BOI was compared with traditional and kernel-level NIDS, outperforming the state-of-the-art.}
+}
+
+@mastersthesis{torres2025msc,
+  author   = {Torres, Júnior, Cláudio},
+  title    = {ARTEMIS: Uma Plataforma Modular para Execução, Monitoração e Investigação de Aplicativos Android Suspeitos},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2025},
+  advisor  = {André Ricardo Abed Grégio},
+  type     = {Master dissertation}
+}
+
+@phdthesis{pimenta2023phd,
+  author   = {Pimenta, Thalita Scharr Rodrigues},
+  title    = {Avaliação da Viabilidade de Modelos Filogenéticos na Classificação de Aplicações Maliciosas},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2023},
+  advisor  = {André Ricardo Abed Grégio},
+  type     = {Doctoral thesis},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/84820},
+  abstract = {Thousands of malicious codes are created, modified with the support of tools of automation and released daily on the world wide web. Among these threats, malware are programs specifically designed to interrupt, damage, or gain access unauthorized access to a system or device. To facilitate identification and categorization of common behaviors, structures and other characteristics of malware, enabling the development of defense solutions, there are analysis strategies that classify malware into groups known as families. One of these strategies is Phylogeny, a technique based on the Biology, which investigates the historical and evolutionary relationship of a species or other group of elements. In addition, the use of clustering techniques on similar sets facilitates reverse engineering tasks for analysis of unknown variants. a variant refers to a new version of malicious code that is created from modifications of existing malware. The present work investigates the feasibility of using phylogenies and methods of grouping in the classification of malware variants for the Android platform. Initially 82 related works were analyzed to verify experiment configurations of the state of the art. After this study, four experiments were carried out to evaluate the use of similarity measures and clustering algorithms in the classification of variants and in the similarity analysis between families. In addition to these experiments, a Flow of Activities for Malware grouping with five distinct phases. This flow has purpose of helping to define parameters for clustering techniques, including measures of similarity, type of clustering algorithm to be used and feature selection. After defining the flow of activities, the Androidgyny framework was proposed, a prototype for sample analysis, feature extraction and classification of variants based on medoids and unique features of known families. To validate Androidgyny were Two experiments were carried out: a comparison with the related tool Gefdroid and another with copies of the 25 most populous families in the Androzoo dataset.}
+}
+
+@phdthesis{ceschin2023phd,
+  author   = {Ceschin, Fabrício José de Oliveira},
+  title    = {Rogue One: Rebelling Against Machine Learning (In) Security},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2023},
+  advisor  = {André Ricardo Abed Grégio},
+  type     = {Doctoral thesis},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/81618},
+  abstract = {Machine Learning (ML) is widely used in many cybersecurity tasks nowadays and it is considered state-of-the-art because it helps to improve the detection of new attacks, keeping pace with their evolution. However, ML-based solutions may be too difficult to evaluate in some scenarios, making them prone to gaps and pitfalls that could invalidate their use in practice. One of the reasons for that is that cybersecurity data follows a non-stationary distribution due to its constantly changing nature to evade detection, requiring special attention. Thus, it is essential to know how to correctly use Machine Learning (ML) in cybersecurity, considering all the challenges that are faced during the proposal or deployment of defense solutions. In this thesis, I propose to investigate the main challenges of applying Machine Learning to cybersecurity, showing how existing solutions fail and, in some cases, proposing possible mitigations to them. Based on that, I present a critical analysis of the state-of-the-art literature and point directions toward adequate ways for future research. The main objectives of this work are to (i) understand the main problems of applying Machine Learning in cybersecurity; (ii) detect what can be improved; (iii) what is the future of Machine Learning for security; and (iv) reduce the gap between industry and academy. Finally, the main contributions of this thesis are (i) an extensive analysis of the recent literature regarding ML applied to cybersecurity in a comparative way; (ii) directions for cybersecurity research considering its particularities and how to correctly apply ML to improve quality and allow their effective use in real-world applications; and (iii) a set of modules or frameworks to support and improve further ML solutions for cybersecurity that can be used by both industry and academy.}
+}
+
+@phdthesis{botacin2021phd,
+  author   = {Botacin, Marcus Felipe},
+  title    = {On the Malware Detection Problem: Challenges \& Novel Approaches},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2021},
+  advisor  = {André Ricardo Abed Grégio and Paulo Lício de Geus},
+  type     = {Doctoral thesis},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/85292},
+  abstract = {Many solutions to detect malware have been proposed over time, but effective and efficient malware detection still remains an open problem. In this work, I take a look at some malware detection challenges and pitfalls to contribute towards increasing system’s malware detection capabilities. I propose a new approach to tackle malware research in a practical but still scientific manner and leverage this approach to investigate four issues: (i) the need for understanding context to allow proper detection of localized threats; (ii) the need for developing better metrics for AntiVirus (AV) evaluation; (iii) the feasibility of leveraging hardware-software collaboration for efficient AV implementation, and (iv) the need for predicting future threats to allow faster incident responses.}
+}
+
+@mastersthesis{beppler2018msc,
+  author   = {Beppler, Tamy Emily},
+  title    = {Avaliação de Técnicas de Análise de Texturas para Classificação de Famílias de Malware},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2018},
+  advisor  = {André Ricardo Abed Grégio and Olga Regina Pereira Bellon},
+  type     = {Master dissertation},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/59444},
+  abstract = {The number of malicious software variants released daily turned manual malware analysis into an impractical task a long time ago. Due to that, automated analysis techniques were proposed, such as static and dynamic code analysis, which are the most used nowadays for the malware problem. However, malware authors already identified the shortcomings of each one of these analysis types so as to create new malicious files that are not even detected by current antiviruses. To solve this problem, researchers have proposed other types of analysis and invested in faster and more accurate classification methods. In this research work, I did a bibliographic survey on the subject, which led to the decision of performing classification using texture analysis. Several techniques were filtered to classify malware using texture analysis through a literature systematic review. Experiments were carried out with these techniques applied in a literature dataset (Malimg) and then reapplied to the samples of our lab’s malware dataset, more robust and similar to the real world scenario. In both datasets, KNN algorithm presented the best classification results, showing that it is the most viable approach towards solving the problem of grouping malware variants correctly into their families based on texture analysis. The classification techniques using the global descriptor GIST obtain a higher accuracy rate when compared to the local LBP descriptor and the use of a larger scale of the textures also presents better results. The local dataset achieves good results only after a data selection, presenting a discussion on the use of non-appropriate datasets in the literature for building generic malware classifiers. Related to the resilience to obfuscation techniques used by malware writers to deprive a binary, the experiments also point to another false theory about texture analysis, since it presents very bad results even when using fairly simple techniques. The texture analysis presents good results only for very similar variants, and can not be used in a real world scenario where there is a great variety of families and use of quite sophisticated techniques of obfuscation.}
+}
+
+@mastersthesis{ceschin2018msc,
+  author   = {Ceschin, Fabrício José de Oliveira},
+  title    = {Need for Speed: Analysis of Brazilian Malware Classifiers’ Expiration Date},
+  school   = {Universidade Federal do Paran{\'a} (UFPR)},
+  address  = {Curitiba, Brazil},
+  year     = {2018},
+  advisor  = {André Ricardo Abed Grégio and Marcos Alexandre Castilho and David Menotti Gomes},
+  type     = {Master dissertation},
+  url      = {https://acervodigital.ufpr.br/xmlui/handle/1884/55204},
+  abstract = {In this work, we present an analysis of thousands of malware samples collected in Brazilian cyberspace along several years, including their evolution and the impact of this evolution on malware classification. We also share a labeled dataset of this Brazilian malware set to allow other experiments and comparisons by the community. This dataset is representative of the Brazilian cyberspace and contains profiles of known-bad and known-good programs based on binaries’ static features. Our analysis leveraged machine learning algorithms (in particular, we evaluated two popular off-the-shelf classifiers: KNN and Random Forest) to classify the programs of our dataset as malware or goodware and to identify the potential concept drift that occurs when the subject of a classification scheme evolves as time goes by. We also provide extensive details about our dataset, which is composed of 38,000 programs - 20,000 labeled as known malware, collected from malicious email attachments/infected users (triaged in both cases by a major Brazilian financial institution with a country-wide distributed network) between 2013 and early 2017. For the sake of reproducibility and unbiased comparison, we make the feature vectors produced from our database publicly available. Finally, we discuss the results of the conducted experiments, whose analysis evidences the existence of concept drift on programs, either goodware and malware, and shows that it is not possible to say that there is seasonality in our dataset.}
+}

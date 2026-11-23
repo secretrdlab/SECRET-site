@@ -1,0 +1,8 @@
+{{- $pg := .Paginator }}
+{{- if gt $pg.TotalPages 1 }}
+<nav class="pagination" aria-label="Pages">
+  {{ with $pg.Prev }}<a class="btn btn-outline" href="{{ .URL }}">← Newer</a>{{ end }}
+  <span>Page {{ $pg.PageNumber }} of {{ $pg.TotalPages }}</span>
+  {{ with $pg.Next }}<a class="btn btn-outline" href="{{ .URL }}">Older →</a>{{ end }}
+</nav>
+{{- end }}

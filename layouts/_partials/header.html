@@ -1,0 +1,27 @@
+{{- $logo := resources.Get "images/logo.png" }}
+{{- $logoS := $logo.Resize "300x" }}
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} — home">
+      <img src="{{ $logoS.RelPermalink }}" width="{{ $logoS.Width }}" height="{{ $logoS.Height }}" alt="SECRET">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      {{ partial "icon.html" "menu" }}
+    </button>
+    <nav id="nav-menu" class="nav-menu" aria-label="Main">
+      <ul>
+        {{- $current := . }}
+        {{- range site.Menus.main }}
+          {{- $active := and (not (strings.Contains .URL "#")) (ne .URL "/") (strings.HasPrefix $current.RelPermalink (.URL | relURL)) }}
+          <li><a href="{{ .URL | relURL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+      <div class="nav-tools">
+        <a class="icon-btn" href="{{ "/search/" | relURL }}" aria-label="Search">{{ partial "icon.html" "search" }}</a>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="i-moon">{{ partial "icon.html" "moon" }}</span><span class="i-sun">{{ partial "icon.html" "sun" }}</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

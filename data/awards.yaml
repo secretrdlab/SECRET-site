@@ -1,0 +1,52 @@
+# Awards page (/awards/). Newest group first. Each award may have:
+#   title (required), description (Markdown), image (file in assets/images/awards/),
+#   caption, link (news URL).
+
+- year: "2025"
+  awards:
+    - title: SBSEG Artifact Award
+      description: Brazilian Symposium on Information and Computer System Security (SBSeg) 2025
+      image: Artefatos.jpg
+    - title: SBSEG Tempest Award
+      description: Brazilian Symposium on Information and Computer System Security (SBSeg) 2025
+      image: Tempest.jpg
+    - title: SBSEG Honorable Mention
+      description: Brazilian Symposium on Information and Computer System Security (SBSeg) 2025
+      image: Mencao.jpg
+    - title: SBSEG Winner of Hackathon Hackers do Bem (RNP)
+      description: Brazilian Symposium on Information and Computer System Security (SBSeg) 2025
+      image: Hackathon.jpg
+      link: https://gazzconecta.com.br/sem-categoria/pesquisadores-da-ufpr-conquistam-1o-lugar-em-maratona-nacional-de-ciberseguranca/
+
+- year: "2023"
+  awards:
+    - title: DInf UFPR Distinguished Thesis
+      description: "**Fabrício Ceschin** distinguished thesis certification from Federal University of Paraná."
+      link: https://www.prppg.ufpr.br/site/pb/premio-2023/
+
+- year: "2021/2022"
+  awards:
+    - title: DInf UFPR Distinguished Thesis
+      description: "**Marcus Botacin** distinguished thesis certification from Federal University of Paraná."
+      link: https://www.prppg.ufpr.br/site/pb/premio-2022/
+
+- year: "2019"
+  awards:
+    - title: SBSEG Distinguished Paper
+      description: "**Marcus Botacin** distinguished paper certification from SBSeg 2019."
+      image: sbseg2019.jpg
+      link: https://sbseg2019.ime.usp.br/SBSeg2019_files/propaganda-premio-principal-completo-mencao2.jpg
+    - title: USENIX Enigma Diversity Grant
+      description: "**Marcus Botacin**, **Daniela Oliveira** and **Fabrício Ceschin** at USENIX Enigma 2019."
+
+- year: "2018"
+  awards:
+    - title: SBSeg Best Dissertation Award
+      description: Brazilian Computer Society (SBC) Award for the best Master dissertation in 2018.
+
+- year: "2017"
+  awards:
+    - title: Google LARA
+      description: "**(Latin America Research Awards)**"
+      image: google-lara.jpg
+      caption: Researchers awarded by Google LARA in 2017

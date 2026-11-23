@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="page-head page-head-image" style="--bg: url('{{ partial "bgimage.html" site.Data.site.awards.background }}')">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<div class="container page-body">
+  {{- range site.Data.awards }}
+  <section class="award-year">
+    <h2>{{ .year }}</h2>
+    <div class="awards-grid">
+      {{- range $a := .awards }}
+      <article class="award">
+        {{- with .image }}
+        <figure>
+          {{ partial "img.html" (dict "src" (printf "images/awards/%s" .) "width" 900 "alt" $a.title) }}
+        </figure>
+        {{- end }}
+        <div class="award-body">
+          <h3>{{ .title }}</h3>
+          {{ with .description }}<div>{{ . | markdownify }}</div>{{ end }}
+          {{ with .caption }}<p class="caption">Photo: {{ . }}</p>{{ end }}
+          {{ with .link }}<p><a href="{{ . }}" rel="noopener">Check out the news here</a>.</p>{{ end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</div>
+{{ end }}

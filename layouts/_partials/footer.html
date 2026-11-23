@@ -1,0 +1,7 @@
+{{- $f := site.Data.site.footer }}
+<footer class="site-footer">
+  <div class="container">
+    <p>{{ $f.text | markdownify }}</p>
+    <p>© {{ now.Year }} {{ $f.owner }}</p>
+  </div>
+</footer>

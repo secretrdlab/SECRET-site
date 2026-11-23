@@ -1,0 +1,14 @@
+{{- $p := . }}
+<div class="person">
+  <a href="{{ $p.RelPermalink }}" class="avatar-link" tabindex="-1" aria-hidden="true">
+    {{- with $p.Resources.GetMatch "avatar.*" }}
+      {{- $a := .Fill "240x240 Center q80" }}
+      <img class="avatar" src="{{ $a.RelPermalink }}" width="120" height="120" alt="" loading="lazy">
+    {{- else }}
+      <span class="avatar avatar-initials">{{ substr $p.Params.first_name 0 1 }}{{ substr (index (last 1 (split $p.Params.last_name " ")) 0) 0 1 }}</span>
+    {{- end }}
+  </a>
+  <h3 class="person-name"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+  {{- with $p.Params.role }}<p class="person-role">{{ . }}</p>{{ end }}
+  {{ partial "person-links.html" $p }}
+</div>

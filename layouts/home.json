@@ -1,0 +1,12 @@
+{{- /* Search index consumed by /search/ */ -}}
+{{- $items := slice }}
+{{- range where site.RegularPages "Section" "in" (slice "post" "people") }}
+  {{- $items = $items | append (dict "t" .Title "u" .RelPermalink "k" (cond (eq .Section "post") "Post" "Person") "x" (printf "%s %s %s" .Plain (.Params.role | default "") (delimit (.Params.interests | default slice) " ") | truncate 400)) }}
+{{- end }}
+{{- range site.Data.generated.publications }}
+  {{- $items = $items | append (dict "t" .title "u" (printf "%s#%s" ("/publication/" | relURL) .key) "k" (printf "Publication · %d" .year) "x" (printf "%s %s" (delimit (apply .authors "index" "." "full") ", ") .venue)) }}
+{{- end }}
+{{- range site.Data.generated.theses }}
+  {{- $items = $items | append (dict "t" .title "u" (printf "%s#%s" ("/thesis-dissertations/" | relURL) .key) "k" (printf "%s · %d" .type_label .year) "x" (delimit (apply .authors "index" "." "full") ", ")) }}
+{{- end }}
+{{- $items | jsonify -}}

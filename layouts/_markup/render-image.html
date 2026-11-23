@@ -1,0 +1,13 @@
+{{- /* Resize images placed next to a post's index.md; pass other URLs through untouched. */ -}}
+{{- $r := .Page.Resources.Get .Destination }}
+<figure>
+{{- with $r }}
+  {{- $img := . }}
+  {{- if gt .Width 1200 }}{{ $img = .Resize (printf "1200x %s" (cond (eq .MediaType.SubType "png") "webp" "jpg")) }}{{ end }}
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Text }}" loading="lazy" decoding="async">
+{{- else }}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
+{{- end }}
+{{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- /**/ -}}

@@ -1,0 +1,21 @@
+# Partner logos shown on the home page, in this order.
+# To add one: put the logo in assets/images/partners/ and add an entry below (url is optional).
+
+- name: FICS Research
+  logo: fics_logo.png
+- name: FAU
+  logo: fau_logo.png
+- name: Texas A&M University
+  logo: texas_am.png
+- name: Georgia Tech
+  logo: georgia_tech.png
+- name: Max Planck Institute
+  logo: maxplanck_logo.png
+- name: BluePex
+  logo: bluepex.png
+- name: Centro de Ciências Forenses
+  logo: ccf.png
+- name: Itaú
+  logo: itau.png
+- name: RNP - Rede Nacional de Ensino e Pesquisa
+  logo: rnp.png

@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="page-head">
+  <div class="container"><h1>{{ .Title }}</h1></div>
+</div>
+<div class="container page-body">
+  <ul class="post-list">
+    {{- range .Paginator.Pages }}
+    <li class="post-card">
+      {{- $cover := .Resources.GetMatch "{cover,featured}*" | default (index (.Resources.ByType "image") 0) }}
+      {{- with $cover }}
+      <a href="{{ $.RelPermalink }}" class="post-thumb" tabindex="-1" aria-hidden="true">
+        {{- $t := .Fill "480x300 Smart q75 jpg" }}<img src="{{ $t.RelPermalink }}" width="240" height="150" alt="" loading="lazy">
+      </a>
+      {{- end }}
+      <div>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p>{{ .Summary | plainify }}</p>
+        <p class="meta">{{ .Date.Format "Jan 2, 2006" }} · {{ .ReadingTime }} min read</p>
+      </div>
+    </li>
+    {{- end }}
+  </ul>
+  {{ partial "pagination.html" . }}
+</div>
+{{ end }}
