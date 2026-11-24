@@ -72,19 +72,35 @@ make serve      # http://localhost:1313 — run `make data` again after editing 
 make check      # same validation + link check as Jenkins
 ```
 
-## Jenkins
+## Hosting and Jenkins
+
+The site is hosted on **GitHub Pages** from the `gh-pages` branch of this repository.
+Nobody edits that branch by hand: Jenkins rebuilds it from `main`.
 
 `Jenkinsfile` runs: **Setup** (downloads the pinned Hugo, creates the venv) → **Validate BibTeX** →
-**Build** → **Check** (broken internal links) → **Archive** (`site.tar.gz`) → **Deploy** (only on `main`).
+**Build** → **Check** (broken internal links) → **Archive** (`site.tar.gz`) →
+**Deploy** (only for `main`: force-pushes the built site to `gh-pages`).
 
 One-time setup:
 
-1. Create a *Pipeline* (or *Multibranch Pipeline*) job pointing at this repository, script path `Jenkinsfile`.
-2. Add a credential of type **SSH Username with private key**, ID `secret-site-deploy-key`,
-   whose public key is in `~/.ssh/authorized_keys` of the deploy user on the web server.
-3. Edit `DEPLOY_HOST`, `DEPLOY_USER` and `DEPLOY_PATH` at the top of the `Jenkinsfile`.
-4. Optional: add a webhook from the Git server to Jenkins so builds start instantly
-   (otherwise Jenkins polls every 5 minutes).
+1. Create a key pair: `ssh-keygen -t ed25519 -N "" -C jenkins-secret-site -f ~/.ssh/secret-site-gh`
+2. In GitHub, go to **Settings → Deploy keys → Add deploy key**, paste `secret-site-gh.pub`,
+   and tick **Allow write access**.
+3. In Jenkins, go to **Manage Jenkins → Credentials → Add** and choose
+   **SSH Username with private key**: ID `secret-site-github-key`, username `git`, private key = `secret-site-gh`.
+4. Create a *Pipeline* job: *Pipeline script from SCM* → Git →
+   `https://github.com/secretrdlab/SECRET-site.git`, branch `*/main`, script path `Jenkinsfile`.
+   Run **Build Now** once; this creates the `gh-pages` branch.
+5. In GitHub, go to **Settings → Pages**: Source *Deploy from a branch*, branch `gh-pages`, folder `/ (root)`.
+6. Point the domain to GitHub, then tick **Enforce HTTPS** in Settings → Pages:
+   - `secret.seg.br` A records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `secret.seg.br` AAAA records: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - `www.secret.seg.br` CNAME: `secretrdlab.github.io`
 
-The agent needs `bash`, `curl`, `tar`, `python3` (with `venv`), `rsync` and `ssh`.
-To upgrade Hugo, change `HUGO_VERSION` in the `Jenkinsfile` and run `make check` locally first.
+To preview before the domain is switched, run the job with **Build with Parameters** and
+`BASE_URL = https://secretrdlab.github.io/SECRET-site/`. That build writes no `CNAME`, so the site
+appears at that address. Building again with the default `BASE_URL` sets the custom domain back.
+
+Jenkins checks GitHub for new commits every 5 minutes. The agent needs `bash`, `curl`, `tar`, `git`,
+`ssh` and `python3` (with `venv`), on Linux or macOS. To upgrade Hugo, change `HUGO_VERSION`
+in the `Jenkinsfile` and run `make check` locally first.

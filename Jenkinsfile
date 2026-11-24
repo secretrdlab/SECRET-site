@@ -1,9 +1,9 @@
 // Jenkins pipeline for the SECRET website.
 //
 // Every push: validate BibTeX -> build with Hugo -> check links -> archive the site.
-// Pushes to the main branch are also deployed (see the Deploy stage).
+// Pushes to main are then published to the gh-pages branch, which GitHub Pages serves.
 //
-// Requirements on the agent: bash, curl, tar, python3 (with venv), rsync + ssh (for deploy).
+// Requirements on the agent (Linux or macOS): bash, curl, tar, git, ssh, python3 (with venv).
 // Hugo is downloaded and cached automatically — no Jenkins plugins beyond the defaults
 // (Pipeline, Git, Credentials Binding) are needed.
 
@@ -24,16 +24,18 @@ pipeline {
 
   parameters {
     booleanParam(name: 'FORCE_DEPLOY', defaultValue: false, description: 'Deploy even if this is not the main branch')
+    string(name: 'BASE_URL', defaultValue: 'https://secret.seg.br/',
+           description: 'Public address of the site. Use https://secretrdlab.github.io/SECRET-site/ to preview before the domain points to GitHub.')
   }
 
   environment {
     HUGO_VERSION   = '0.152.2'
     HUGO_ENV       = 'production'
-    // --- Deploy target: change these to match your web server ---
-    DEPLOY_HOST    = 'secret.inf.ufpr.br'          // server that serves the site
-    DEPLOY_USER    = 'deploy'                      // ssh user on that server
-    DEPLOY_PATH    = '/var/www/secret.seg.br/'     // web root (trailing slash matters for rsync)
-    DEPLOY_CRED_ID = 'secret-site-deploy-key'      // Jenkins "SSH Username with private key" credential
+    // --- GitHub Pages target ---
+    PAGES_REPO     = 'git@github.com:secretrdlab/SECRET-site.git'
+    PAGES_BRANCH   = 'gh-pages'
+    DEPLOY_CRED_ID = 'secret-site-github-key'      // Jenkins "SSH Username with private key" credential
+                                                   // whose public key is a write-enabled Deploy key on the repo
     TOOLS          = "${WORKSPACE}/.tools"
     // Homebrew paths are included because Jenkins on macOS starts with a minimal PATH.
     PATH           = "${WORKSPACE}/.tools/bin:${WORKSPACE}/.venv/bin:/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
@@ -80,7 +82,11 @@ pipeline {
           set -eu
           python scripts/bib2data.py
           rm -rf public
-          hugo --gc --minify --panicOnWarning
+          hugo --gc --minify --panicOnWarning --baseURL "${BASE_URL:-https://secret.seg.br/}"
+          # GitHub Pages: serve files as-is (no Jekyll) and, for a custom domain, write CNAME.
+          touch public/.nojekyll
+          HOST=$(printf '%s' "${BASE_URL:-https://secret.seg.br/}" | sed -E 's#^https?://([^/]+).*#\\1#')
+          case "$HOST" in *.github.io) ;; *) printf '%s\\n' "$HOST" > public/CNAME ;; esac
         '''
       }
     }
@@ -111,9 +117,17 @@ pipeline {
         withCredentials([sshUserPrivateKey(credentialsId: env.DEPLOY_CRED_ID, keyFileVariable: 'SSH_KEY')]) {
           sh '''
             set -eu
-            rsync -az --delete --checksum \
-              -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=accept-new" \
-              public/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
+            export GIT_SSH_COMMAND="ssh -i $SSH_KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+            SRC=$(git rev-parse --short HEAD)
+            cd public
+            rm -rf .git
+            git init -q -b "$PAGES_BRANCH"
+            git add -A
+            git -c user.name="SECRET Jenkins" -c user.email="secret@inf.ufpr.br" \
+                commit -q -m "Deploy site from ${SRC}"
+            # The branch holds only the latest build, so history never grows.
+            git push --force "$PAGES_REPO" "HEAD:$PAGES_BRANCH"
+            rm -rf .git
           '''
         }
       }
