@@ -1,38 +1,32 @@
 {{- /*
-  One publication. Context: dict "p" (entry from data/generated/*.json) "compact" (bool).
-  Also publishes /bib/<key>.bib for the "Download" button.
+  One publication, formatted like the original site's list:
+  Authors (Year). <link>Title</link>. Venue, volume(number), pages.
+  Context: dict "p" (entry from data/generated/*.json) "compact" (bool: hide the buttons).
+  Also publishes /bib/<key>.bib for the Cite dialog's Download button.
 */ -}}
 {{- $p := .p }}
 {{- $bib := resources.FromString (printf "bib/%s.bib" $p.key) (printf "%s\n" $p.bibtex) }}
 {{- $n := len $p.authors }}
 <li class="pub" id="{{ $p.key }}" data-year="{{ $p.year }}" data-type="{{ $p.type }}"
     data-search="{{ lower (printf "%s %s %s %d" $p.title (delimit (apply $p.authors "index" "." "full") " ") $p.venue $p.year) }}">
-  <div class="pub-cite">
-    <span class="pub-authors">
-      {{- range $i, $a := $p.authors -}}
-        {{- if gt $i 0 }}{{ if eq (add $i 1) $n }}{{ if gt $n 2 }},{{ end }} &amp; {{ else }}, {{ end }}{{ end -}}
-        {{- with $a.person -}}
-          <a class="member" href="{{ (site.GetPage (printf "/people/%s" .)).RelPermalink }}">{{ $a.short }}</a>
-        {{- else -}}{{ $a.short }}{{- end -}}
-      {{- end -}}
-    </span>
-    ({{ $p.year }}).
-    <span class="pub-title">{{ with $p.url }}<a href="{{ . }}" rel="noopener">{{ $p.title }}</a>{{ else }}{{ $p.title }}{{ end }}</span>.
-    {{- with $p.venue }} <em class="pub-venue">{{ . }}</em>{{ end -}}
-    {{- with $p.volume }}, {{ . }}{{ with $p.number }}({{ . }}){{ end }}{{ end -}}
-    {{- with $p.pages }}, {{ replace . "--" "–" }}{{ end -}}
-    {{- if and $p.publisher (not $p.volume) (ne $p.type "phdthesis") (ne $p.type "mastersthesis") }}. {{ $p.publisher }}{{ end -}}.
-  </div>
+  {{- range $i, $a := $p.authors -}}
+    {{- if gt $i 0 }}{{ if eq (add $i 1) $n }}{{ if gt $n 2 }},{{ end }} &amp; {{ else }}, {{ end }}{{ end -}}
+    {{- with $a.person -}}<a class="member" href="{{ (site.GetPage (printf "/people/%s" .)).RelPermalink }}">{{ $a.short }}</a>{{- else -}}{{ $a.short }}{{- end -}}
+  {{- end }}
+  ({{ $p.year }}). {{ with $p.url }}<a href="{{ . }}" rel="noopener">{{ $p.title }}</a>{{ else }}{{ $p.title }}{{ end }}.
+  {{- with $p.venue }} {{ . }}{{ end -}}
+  {{- with $p.volume }}, {{ . }}{{ with $p.number }}({{ . }}){{ end }}{{ end -}}
+  {{- with $p.pages }}, {{ replace . "--" "-" }}{{ end -}}
+  {{- if and $p.publisher (not $p.volume) (ne $p.type "phdthesis") (ne $p.type "mastersthesis") }}. {{ $p.publisher }}{{ end -}}.
   {{- if not .compact }}
-  <div class="pub-actions">
-    <span class="badge">{{ $p.type_label }}</span>
-    {{- with $p.doi }}<a class="btn-sm" href="https://doi.org/{{ . }}" rel="noopener">{{ partial "icon.html" "link" }}DOI</a>
-    {{- else }}{{ with $p.url }}<a class="btn-sm" href="{{ . }}" rel="noopener">{{ partial "icon.html" "link" }}Link</a>{{ end }}{{ end }}
+  <span class="pub-links">
     {{- with $p.pdf }}<a class="btn-sm" href="{{ . | relURL }}">{{ partial "icon.html" "pdf" }}PDF</a>{{ end }}
+    {{- with $p.doi }}<a class="btn-sm" href="https://doi.org/{{ . }}" rel="noopener">{{ partial "icon.html" "link" }}DOI</a>
+    {{- else }}{{ with $p.url }}<a class="btn-sm" href="{{ . }}" rel="noopener">{{ partial "icon.html" "link" }}URL</a>{{ end }}{{ end }}
     {{- with $p.code }}<a class="btn-sm" href="{{ . }}" rel="noopener">{{ partial "icon.html" "code" }}Code</a>{{ end }}
     {{- with $p.slides }}<a class="btn-sm" href="{{ . | relURL }}">{{ partial "icon.html" "slides" }}Slides</a>{{ end }}
     <button type="button" class="btn-sm cite-btn" data-key="{{ $p.key }}" data-bib="{{ $bib.RelPermalink }}">{{ partial "icon.html" "quote" }}Cite</button>
-    <template id="bib-{{ $p.key }}">{{ $p.bibtex }}</template>
-  </div>
+  </span>
+  <template id="bib-{{ $p.key }}">{{ $p.bibtex }}</template>
   {{- end }}
 </li>

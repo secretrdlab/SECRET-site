@@ -14,15 +14,6 @@
     $$("a", menu).forEach(function (a) { a.addEventListener("click", function () { menu.classList.remove("open"); }); });
   }
 
-  // Dark mode
-  $$(".theme-toggle").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = t;
-      try { localStorage.setItem("theme", t); } catch (e) {}
-    });
-  });
-
   // Cite dialog
   var dlg = $("#cite-dialog");
   if (dlg) {

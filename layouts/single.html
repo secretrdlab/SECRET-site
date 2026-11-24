@@ -1,14 +1,10 @@
 {{ define "main" }}
-<article>
-  <div class="page-head">
-    <div class="container narrow">
-      <h1>{{ .Title }}</h1>
-      {{- if eq .Section "post" }}
-      <p class="meta">{{ .Date.Format "Jan 2, 2006" }} · {{ .ReadingTime }} min read</p>
-      {{- end }}
-    </div>
-  </div>
-  <div class="container narrow page-body prose">
+<article class="article-container">
+  <h1>{{ .Title }}</h1>
+  {{- if eq .Section "post" }}
+  <div class="meta article-meta">{{ .Date.Format "Jan 2, 2006" }} <span class="sep">·</span> {{ .ReadingTime }} min read</div>
+  {{- end }}
+  <div class="article-style">
     {{ .Content }}
   </div>
 </article>

@@ -19,6 +19,7 @@ every push to GitHub Pages.
 | Home page texts, contact, footer   | `data/site.yaml`                                 |
 | Menu, site URL                     | `hugo.toml`                                      |
 | Look & feel                        | `assets/css/main.css`, `layouts/`                |
+| Icons                              | `assets/icons/*.svg` ([Font Awesome Free](https://fontawesome.com), CC BY 4.0) — add any other icon by copying its SVG there |
 
 ## Common tasks
 

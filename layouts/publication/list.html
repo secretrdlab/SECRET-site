@@ -4,35 +4,32 @@
 {{- $years := slice }}{{ range $pubs }}{{ $years = $years | append .year }}{{ end }}
 {{- $years = sort (uniq $years) "value" "desc" }}
 {{- $types := dict }}{{ range $pubs }}{{ $types = merge $types (dict .type .type_label) }}{{ end }}
-<div class="page-head">
-  <div class="container">
-    <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p>{{ . }}</p>{{ end }}
-  </div>
-</div>
-<div class="container page-body">
-  <div class="pub-toolbar">
-    <label class="sr-only" for="pub-q">Filter publications</label>
-    <input id="pub-q" type="search" placeholder="Filter by title, author, venue…" autocomplete="off">
-    <select id="pub-year" aria-label="Year">
-      <option value="">All years</option>
-      {{- range $years }}<option>{{ . }}</option>{{ end }}
-    </select>
-    <select id="pub-type" aria-label="Type">
-      <option value="">All types</option>
-      {{- range $k, $v := $types }}<option value="{{ $k }}">{{ $v }}</option>{{ end }}
-    </select>
-    <a class="btn btn-outline" href="{{ $all.RelPermalink }}" download="secret-publications.bib">{{ partial "icon.html" "download" }}All BibTeX</a>
-  </div>
-  <p class="pub-count" aria-live="polite"><span id="pub-shown">{{ len $pubs }}</span> of {{ len $pubs }} publications</p>
+<div class="universal-wrapper">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="article-style">
+    <div class="pub-toolbar">
+      <label class="sr-only" for="pub-q">Filter publications</label>
+      <input id="pub-q" type="search" placeholder="Filter by title, author, venue…" autocomplete="off">
+      <select id="pub-year" aria-label="Year">
+        <option value="">All years</option>
+        {{- range $years }}<option>{{ . }}</option>{{ end }}
+      </select>
+      <select id="pub-type" aria-label="Type">
+        <option value="">All types</option>
+        {{- range $k, $v := $types }}<option value="{{ $k }}">{{ $v }}</option>{{ end }}
+      </select>
+      <a class="btn-sm" href="{{ $all.RelPermalink }}" download="secret-publications.bib">{{ partial "icon.html" "download" }}All BibTeX</a>
+    </div>
+    <p class="pub-count" aria-live="polite"><span id="pub-shown">{{ len $pubs }}</span> of {{ len $pubs }} publications</p>
 
-  {{- range $y := $years }}
-  <section class="pub-year" data-year="{{ $y }}">
-    <h2>{{ $y }}</h2>
-    <ul class="pub-list">
-      {{- range where $pubs "year" $y }}{{ partial "pub-item.html" (dict "p" .) }}{{ end }}
-    </ul>
-  </section>
-  {{- end }}
+    {{- range $y := $years }}
+    <section class="pub-year" data-year="{{ $y }}">
+      <h2 id="{{ $y }}">{{ $y }}</h2>
+      <ul class="pub-list">
+        {{- range where $pubs "year" $y }}{{ partial "pub-item.html" (dict "p" .) }}{{ end }}
+      </ul>
+    </section>
+    {{- end }}
+  </div>
 </div>
 {{ end }}

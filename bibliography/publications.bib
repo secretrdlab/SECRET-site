@@ -1,9 +1,10 @@
 % SECRET — SECurity & Reverse Engineering Team (UFPR)
 % Publications database: the single source of truth for /publication/ on the site.
-% Add a new paper by pasting its BibTeX entry anywhere in this file (order doesn't matter;
-% the site sorts by year). Supported types: article, inproceedings, incollection, book,
+% Add a new paper by pasting its BibTeX entry. Papers are grouped by year on the site;
+% within a year they appear in the order of this file. Supported types: article, inproceedings, incollection, book,
 % techreport, misc. Optional extra fields used by the site: pdf, code, slides, note.
 % Encoding: UTF-8 (use biber/biblatex, or \usepackage[utf8]{inputenc} with BibTeX).
+
 
 @article{barboza2025inca,
   author    = {Barboza, Eduardo V.L. and Almeida, Paulo R. Lisboa de and Britto, Alceu de Souza and Sabourin, Robert and Cruz, Rafael M.O.},
@@ -17,65 +18,6 @@
   url       = {https://doi.org/10.1016/j.inffus.2025.103272}
 }
 
-@article{ceschin2024machine,
-  author    = {Ceschin, Fabrício and Botacin, Marcus and Bifet, Albert and Pfahringer, Bernhard and Oliveira, Luiz S. and Gomes, Heitor Murilo and Grégio, André},
-  title     = {Machine Learning {(In)} Security: A Stream of Problems},
-  journal   = {Digital Threats: Research and Practice},
-  volume    = {5},
-  number    = {1},
-  pages     = {1--32},
-  year      = {2024},
-  publisher = {Association for Computing Machinery (ACM)},
-  doi       = {10.1145/3617897},
-  url       = {https://doi.org/10.1145/3617897}
-}
-
-@inproceedings{dalpontte2024teamufpr,
-  author    = {Dal Pontte, Bruno and do Carmo Frasão, Anderson Aparecido and Pereira, Marcus Vinícius Reisdoefer and Heinrich, Tiago and Fulber-Garcia, Vinicius},
-  title     = {{TeamUFPR} at {ABSAPT} 2024: Improving Sentiment Polarity Classification with Data Augmentation using {ChatGPT}},
-  booktitle = {Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024)},
-  series    = {CEUR Workshop Proceedings},
-  volume    = {3756},
-  year      = {2024},
-  publisher = {CEUR-WS.org},
-  url       = {https://ceur-ws.org/Vol-3756/ABSAPT2024_paper2.pdf}
-}
-
-@inproceedings{frasao2024see,
-  author    = {Frasão, Anderson and Heinrich, Tiago and Fulber-Garcia, Vinicius and Will, Newton C. and Obelheiro, Rafael R. and Maziero, Carlos A.},
-  title     = {I See Syscalls by the Seashore: An Anomaly-based {IDS} for Containers Leveraging Sysdig Data},
-  booktitle = {2024 IEEE Symposium on Computers and Communications (ISCC)},
-  pages     = {1--6},
-  year      = {2024},
-  publisher = {IEEE},
-  doi       = {10.1109/iscc61673.2024.10733595},
-  url       = {https://doi.org/10.1109/iscc61673.2024.10733595}
-}
-
-@inproceedings{fulbergarcia2024breaking,
-  author    = {Fulber-Garcia, Vinicius and Flauzino, José and Venâncio, Giovanni and Huff, Alexandre and Duarte Junior, Elias P.},
-  title     = {Breaking the Limits: {Bio-Inspired} {SFC} Deployment across Multiple Domains, Clouds and Orchestrators},
-  booktitle = {2024 IEEE Conference on Network Function Virtualization and Software Defined Networks (NFV-SDN)},
-  pages     = {1--6},
-  year      = {2024},
-  publisher = {IEEE},
-  doi       = {10.1109/nfv-sdn61811.2024.10807470},
-  url       = {https://doi.org/10.1109/nfv-sdn61811.2024.10807470}
-}
-
-@article{fulbergarcia2024genetic,
-  author    = {Fulber-Garcia, Vinicius and Engel, Fábio and Duarte, Elias P.},
-  title     = {A genetic scheduling strategy with spatial reuse for dense wireless networks},
-  journal   = {International Journal of Hybrid Intelligent Systems},
-  volume    = {20},
-  number    = {1},
-  pages     = {41--55},
-  year      = {2024},
-  publisher = {SAGE Publications},
-  doi       = {10.3233/his-230015},
-  url       = {https://doi.org/10.3233/his-230015}
-}
-
 @article{pimenta2024androidgyny,
   author    = {Pimenta, Thalita Scharr Rodrigues and Ceschin, Fabricio and Gregio, Andre},
   title     = {{Androidgyny}: Reviewing Clustering Techniques for Android Malware Family Classification},
@@ -87,6 +29,19 @@
   publisher = {Association for Computing Machinery (ACM)},
   doi       = {10.1145/3587471},
   url       = {https://doi.org/10.1145/3587471}
+}
+
+@article{ceschin2024machine,
+  author    = {Ceschin, Fabrício and Botacin, Marcus and Bifet, Albert and Pfahringer, Bernhard and Oliveira, Luiz S. and Gomes, Heitor Murilo and Grégio, André},
+  title     = {Machine Learning {(In)} Security: A Stream of Problems},
+  journal   = {Digital Threats: Research and Practice},
+  volume    = {5},
+  number    = {1},
+  pages     = {1--32},
+  year      = {2024},
+  publisher = {Association for Computing Machinery (ACM)},
+  doi       = {10.1145/3617897},
+  url       = {https://doi.org/10.1145/3617897}
 }
 
 @inproceedings{rodrigues2024hierarchical,
@@ -111,15 +66,62 @@
   url       = {https://doi.org/10.1109/nfv-sdn61811.2024.10807480}
 }
 
-@inproceedings{barboza2023distance,
-  author    = {Barboza, Eduardo V. L. and de Almeida, Paulo R. Lisboa and de Souza Britto, Alceu and Cruz, Rafael M. O.},
-  title     = {Distance Functions and Normalization Under Stream Scenarios},
-  booktitle = {2023 International Joint Conference on Neural Networks (IJCNN)},
-  pages     = {1--8},
-  year      = {2023},
+@inproceedings{fulbergarcia2024breaking,
+  author    = {Fulber-Garcia, Vinicius and Flauzino, José and Venâncio, Giovanni and Huff, Alexandre and Duarte Junior, Elias P.},
+  title     = {Breaking the Limits: {Bio-Inspired} {SFC} Deployment across Multiple Domains, Clouds and Orchestrators},
+  booktitle = {2024 IEEE Conference on Network Function Virtualization and Software Defined Networks (NFV-SDN)},
+  pages     = {1--6},
+  year      = {2024},
   publisher = {IEEE},
-  doi       = {10.1109/ijcnn54540.2023.10191283},
-  url       = {https://doi.org/10.1109/ijcnn54540.2023.10191283}
+  doi       = {10.1109/nfv-sdn61811.2024.10807470},
+  url       = {https://doi.org/10.1109/nfv-sdn61811.2024.10807470}
+}
+
+@inproceedings{frasao2024see,
+  author    = {Frasão, Anderson and Heinrich, Tiago and Fulber-Garcia, Vinicius and Will, Newton C. and Obelheiro, Rafael R. and Maziero, Carlos A.},
+  title     = {I See Syscalls by the Seashore: An Anomaly-based {IDS} for Containers Leveraging Sysdig Data},
+  booktitle = {2024 IEEE Symposium on Computers and Communications (ISCC)},
+  pages     = {1--6},
+  year      = {2024},
+  publisher = {IEEE},
+  doi       = {10.1109/iscc61673.2024.10733595},
+  url       = {https://doi.org/10.1109/iscc61673.2024.10733595}
+}
+
+@article{fulbergarcia2024genetic,
+  author    = {Fulber-Garcia, Vinicius and Engel, Fábio and Duarte, Elias P.},
+  title     = {A genetic scheduling strategy with spatial reuse for dense wireless networks},
+  journal   = {International Journal of Hybrid Intelligent Systems},
+  volume    = {20},
+  number    = {1},
+  pages     = {41--55},
+  year      = {2024},
+  publisher = {SAGE Publications},
+  doi       = {10.3233/his-230015},
+  url       = {https://doi.org/10.3233/his-230015}
+}
+
+@inproceedings{dalpontte2024teamufpr,
+  author    = {Dal Pontte, Bruno and do Carmo Frasão, Anderson Aparecido and Pereira, Marcus Vinícius Reisdoefer and Heinrich, Tiago and Fulber-Garcia, Vinicius},
+  title     = {{TeamUFPR} at {ABSAPT} 2024: Improving Sentiment Polarity Classification with Data Augmentation using {ChatGPT}},
+  booktitle = {Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024)},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {3756},
+  year      = {2024},
+  publisher = {CEUR-WS.org},
+  url       = {https://ceur-ws.org/Vol-3756/ABSAPT2024_paper2.pdf}
+}
+
+@inproceedings{giovanini2023people,
+  author    = {Giovanini, Luiz and Gilda, Shlok and Silva, Mirela and Ceschin, Fabrício and Shrestha, Prakash and Brant, Christopher and Fernandes, Juliana and Silva, Catia S. and Grégio, André and Oliveira, Daniela},
+  title     = {People Still Care About Facts: Twitter Users Engage More with Factual Discourse than Misinformation},
+  booktitle = {Security and Privacy in Social Networks and Big Data},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {3--22},
+  year      = {2023},
+  publisher = {Springer Nature Singapore},
+  doi       = {10.1007/978-981-99-5177-2_1},
+  url       = {https://doi.org/10.1007/978-981-99-5177-2_1}
 }
 
 @article{ceschin2023fast,
@@ -134,6 +136,28 @@
   url       = {https://doi.org/10.1016/j.eswa.2022.118590}
 }
 
+@inproceedings{pereiragomes2023efficient,
+  author    = {Pereira Gomes, David L. and Grégio, André and Zanata Alves, Marco A. and Lisboa de Almeida, Paulo R.},
+  title     = {Efficient Prequential {AUC-PR} Computation},
+  booktitle = {2023 International Conference on Machine Learning and Applications (ICMLA)},
+  pages     = {2222--2227},
+  year      = {2023},
+  publisher = {IEEE},
+  doi       = {10.1109/icmla58977.2023.00335},
+  url       = {https://doi.org/10.1109/icmla58977.2023.00335}
+}
+
+@inproceedings{hochuli2023deep,
+  author    = {Hochuli, Andre Gustavo and Barddal, Jean Paul and Palhano, Gillian Cezar and Mendes, Leonardo Matheus and Lisboa de Almeida, Paulo Ricardo},
+  title     = {Deep Single Models vs. Ensembles: Insights for a Fast Deployment of Parking Monitoring Systems},
+  booktitle = {2023 International Conference on Machine Learning and Applications (ICMLA)},
+  pages     = {1379--1384},
+  year      = {2023},
+  publisher = {IEEE},
+  doi       = {10.1109/icmla58977.2023.00208},
+  url       = {https://doi.org/10.1109/icmla58977.2023.00208}
+}
+
 @inproceedings{dealmeida2023vehicle,
   author    = {de Almeida, Paulo R. Lisboa and Alves, Jeovane Honório and Oliveira, Luiz S. and Hochuli, Andre Gustavo and Fröhlich, João V. and Krauel, Rodrigo A.},
   title     = {Vehicle {Occurrence-Based} Parking Space Detection},
@@ -143,6 +167,28 @@
   publisher = {IEEE},
   doi       = {10.1109/smc53992.2023.10394316},
   url       = {https://doi.org/10.1109/smc53992.2023.10394316}
+}
+
+@inproceedings{barboza2023distance,
+  author    = {Barboza, Eduardo V. L. and de Almeida, Paulo R. Lisboa and de Souza Britto, Alceu and Cruz, Rafael M. O.},
+  title     = {Distance Functions and Normalization Under Stream Scenarios},
+  booktitle = {2023 International Joint Conference on Neural Networks (IJCNN)},
+  pages     = {1--8},
+  year      = {2023},
+  publisher = {IEEE},
+  doi       = {10.1109/ijcnn54540.2023.10191283},
+  url       = {https://doi.org/10.1109/ijcnn54540.2023.10191283}
+}
+
+@inproceedings{fulbergarcia2023etsi,
+  author    = {Fulber-Garcia, Vinicius and Flauzino, José and Dos Santos, Carlos R. P. and Duarte, Elias P.},
+  title     = {An {ETSI-Compliant} Architecture for the Element Management System: The Key for Holistic {NFV} Management},
+  booktitle = {2023 19th International Conference on Network and Service Management (CNSM)},
+  pages     = {1--9},
+  year      = {2023},
+  publisher = {IEEE},
+  doi       = {10.23919/cnsm59352.2023.10327882},
+  url       = {https://doi.org/10.23919/cnsm59352.2023.10327882}
 }
 
 @article{fulbergarcia2023customizable,
@@ -158,73 +204,30 @@
   url       = {https://doi.org/10.1007/s10922-023-09760-1}
 }
 
-@inproceedings{fulbergarcia2023etsi,
-  author    = {Fulber-Garcia, Vinicius and Flauzino, José and Dos Santos, Carlos R. P. and Duarte, Elias P.},
-  title     = {An {ETSI-Compliant} Architecture for the Element Management System: The Key for Holistic {NFV} Management},
-  booktitle = {2023 19th International Conference on Network and Service Management (CNSM)},
-  pages     = {1--9},
-  year      = {2023},
-  publisher = {IEEE},
-  doi       = {10.23919/cnsm59352.2023.10327882},
-  url       = {https://doi.org/10.23919/cnsm59352.2023.10327882}
-}
-
-@inproceedings{giovanini2023people,
-  author    = {Giovanini, Luiz and Gilda, Shlok and Silva, Mirela and Ceschin, Fabrício and Shrestha, Prakash and Brant, Christopher and Fernandes, Juliana and Silva, Catia S. and Grégio, André and Oliveira, Daniela},
-  title     = {People Still Care About Facts: Twitter Users Engage More with Factual Discourse than Misinformation},
-  booktitle = {Security and Privacy in Social Networks and Big Data},
-  series    = {Lecture Notes in Computer Science},
-  pages     = {3--22},
-  year      = {2023},
-  publisher = {Springer Nature Singapore},
-  doi       = {10.1007/978-981-99-5177-2_1},
-  url       = {https://doi.org/10.1007/978-981-99-5177-2_1}
-}
-
-@inproceedings{hochuli2023deep,
-  author    = {Hochuli, Andre Gustavo and Barddal, Jean Paul and Palhano, Gillian Cezar and Mendes, Leonardo Matheus and Lisboa de Almeida, Paulo Ricardo},
-  title     = {Deep Single Models vs. Ensembles: Insights for a Fast Deployment of Parking Monitoring Systems},
-  booktitle = {2023 International Conference on Machine Learning and Applications (ICMLA)},
-  pages     = {1379--1384},
-  year      = {2023},
-  publisher = {IEEE},
-  doi       = {10.1109/icmla58977.2023.00208},
-  url       = {https://doi.org/10.1109/icmla58977.2023.00208}
-}
-
-@inproceedings{pereiragomes2023efficient,
-  author    = {Pereira Gomes, David L. and Grégio, André and Zanata Alves, Marco A. and Lisboa de Almeida, Paulo R.},
-  title     = {Efficient Prequential {AUC-PR} Computation},
-  booktitle = {2023 International Conference on Machine Learning and Applications (ICMLA)},
-  pages     = {2222--2227},
-  year      = {2023},
-  publisher = {IEEE},
-  doi       = {10.1109/icmla58977.2023.00335},
-  url       = {https://doi.org/10.1109/icmla58977.2023.00335}
-}
-
-@article{botacin2022antiviruses,
-  author    = {Botacin, Marcus and Domingues, Felipe Duarte and Ceschin, Fabrício and Machnicki, Raphael and Zanata Alves, Marco Antonio and de Geus, Paulo Lício and Grégio, André},
-  title     = {{AntiViruses} under the Microscope: A {Hands-On} Perspective},
-  journal   = {Computers \& Security},
-  volume    = {112},
-  pages     = {102500},
+@article{giovanini2022online,
+  author    = {Giovanini, Luiz and Ceschin, Fabricio and Silva, Mirela and Chen, Aokun and Kulkarni, Ramchandra and Banda, Sanjay and Lysaght, Madison and Qiao, Heng and Sapountzis, Nikolaos and Sun, Ruimin and Matthews, Brandon and Wu, Dapeng Oliver and Gregio, Andre and Oliveira, Daniela},
+  title     = {Online Binary Models are Promising for Distinguishing Temporally Consistent Computer Usage Profiles},
+  journal   = {IEEE Transactions on Biometrics, Behavior, and Identity Science},
+  volume    = {4},
+  number    = {3},
+  pages     = {412--423},
   year      = {2022},
-  publisher = {Elsevier BV},
-  doi       = {10.1016/j.cose.2021.102500},
-  url       = {https://doi.org/10.1016/j.cose.2021.102500}
+  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+  doi       = {10.1109/tbiom.2022.3179206},
+  url       = {https://doi.org/10.1109/tbiom.2022.3179206}
 }
 
-@inproceedings{botacin2022dissecting,
-  author    = {Botacin, Marcus and Grégio, André},
-  title     = {Dissecting Applications Uninstallers and Removers: Are They Effective?},
-  booktitle = {Information Security},
-  series    = {Lecture Notes in Computer Science},
-  pages     = {339--359},
+@article{botacin2022terminator,
+  author    = {Botacin, Marcus and Moreira, Francis B. and Navaux, Philippe O. A. and Grégio, André and Alves, Marco A. Z.},
+  title     = {Terminator : A Secure Coprocessor to Accelerate {Real-Time} {AntiViruses} Using Inspection Breakpoints},
+  journal   = {ACM Transactions on Privacy and Security},
+  volume    = {25},
+  number    = {2},
+  pages     = {1--34},
   year      = {2022},
-  publisher = {Springer International Publishing},
-  doi       = {10.1007/978-3-031-22390-7_20},
-  url       = {https://doi.org/10.1007/978-3-031-22390-7_20}
+  publisher = {Association for Computing Machinery (ACM)},
+  doi       = {10.1145/3494535},
+  url       = {https://doi.org/10.1145/3494535}
 }
 
 @article{botacin2022heaven,
@@ -251,55 +254,16 @@
   url       = {https://doi.org/10.1007/978-3-031-22390-7_22}
 }
 
-@article{botacin2022terminator,
-  author    = {Botacin, Marcus and Moreira, Francis B. and Navaux, Philippe O. A. and Grégio, André and Alves, Marco A. Z.},
-  title     = {Terminator : A Secure Coprocessor to Accelerate {Real-Time} {AntiViruses} Using Inspection Breakpoints},
-  journal   = {ACM Transactions on Privacy and Security},
-  volume    = {25},
-  number    = {2},
-  pages     = {1--34},
+@inproceedings{botacin2022dissecting,
+  author    = {Botacin, Marcus and Grégio, André},
+  title     = {Dissecting Applications Uninstallers and Removers: Are They Effective?},
+  booktitle = {Information Security},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {339--359},
   year      = {2022},
-  publisher = {Association for Computing Machinery (ACM)},
-  doi       = {10.1145/3494535},
-  url       = {https://doi.org/10.1145/3494535}
-}
-
-@article{giovanini2022online,
-  author    = {Giovanini, Luiz and Ceschin, Fabricio and Silva, Mirela and Chen, Aokun and Kulkarni, Ramchandra and Banda, Sanjay and Lysaght, Madison and Qiao, Heng and Sapountzis, Nikolaos and Sun, Ruimin and Matthews, Brandon and Wu, Dapeng Oliver and Gregio, Andre and Oliveira, Daniela},
-  title     = {Online Binary Models are Promising for Distinguishing Temporally Consistent Computer Usage Profiles},
-  journal   = {IEEE Transactions on Biometrics, Behavior, and Identity Science},
-  volume    = {4},
-  number    = {3},
-  pages     = {412--423},
-  year      = {2022},
-  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
-  doi       = {10.1109/tbiom.2022.3179206},
-  url       = {https://doi.org/10.1109/tbiom.2022.3179206}
-}
-
-@article{sun2022praise,
-  author    = {Sun, Ruimin and Botacin, Marcus and Sapountzis, Nikolaos and Yuan, Xiaoyong and Bishop, Matt and Porter, Donald E. and Li, Xiaolin and Gregio, Andre and Oliveira, Daniela},
-  title     = {A Praise for Defensive Programming: Leveraging Uncertainty for Effective Malware Mitigation},
-  journal   = {IEEE Transactions on Dependable and Secure Computing},
-  volume    = {19},
-  number    = {1},
-  pages     = {353--369},
-  year      = {2022},
-  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
-  doi       = {10.1109/tdsc.2020.2986112},
-  url       = {https://doi.org/10.1109/tdsc.2020.2986112}
-}
-
-@article{botacin2021challenges,
-  author    = {Botacin, Marcus and Ceschin, Fabricio and Sun, Ruimin and Oliveira, Daniela and Grégio, André},
-  title     = {Challenges and Pitfalls in Malware Research},
-  journal   = {Computers \& Security},
-  volume    = {106},
-  pages     = {102287},
-  year      = {2021},
-  publisher = {Elsevier BV},
-  doi       = {10.1016/j.cose.2021.102287},
-  url       = {https://doi.org/10.1016/j.cose.2021.102287}
+  publisher = {Springer International Publishing},
+  doi       = {10.1007/978-3-031-22390-7_20},
+  url       = {https://doi.org/10.1007/978-3-031-22390-7_20}
 }
 
 @article{botacin2021one,
@@ -315,6 +279,18 @@
   url       = {https://doi.org/10.1145/3429741}
 }
 
+@article{botacin2021challenges,
+  author    = {Botacin, Marcus and Ceschin, Fabricio and Sun, Ruimin and Oliveira, Daniela and Grégio, André},
+  title     = {Challenges and Pitfalls in Malware Research},
+  journal   = {Computers \& Security},
+  volume    = {106},
+  pages     = {102287},
+  year      = {2021},
+  publisher = {Elsevier BV},
+  doi       = {10.1016/j.cose.2021.102287},
+  url       = {https://doi.org/10.1016/j.cose.2021.102287}
+}
+
 @article{botacin2021understanding,
   author    = {Botacin, Marcus and Galhardo Moia, Vitor Hugo and Ceschin, Fabricio and Amaral Henriques, Marco A. and Grégio, André},
   title     = {Understanding uses and misuses of similarity hashing functions for malware detection and family clustering in actual scenarios},
@@ -325,6 +301,41 @@
   publisher = {Elsevier BV},
   doi       = {10.1016/j.fsidi.2021.301220},
   url       = {https://doi.org/10.1016/j.fsidi.2021.301220}
+}
+
+@article{botacin2022antiviruses,
+  author    = {Botacin, Marcus and Domingues, Felipe Duarte and Ceschin, Fabrício and Machnicki, Raphael and Zanata Alves, Marco Antonio and de Geus, Paulo Lício and Grégio, André},
+  title     = {{AntiViruses} under the Microscope: A {Hands-On} Perspective},
+  journal   = {Computers \& Security},
+  volume    = {112},
+  pages     = {102500},
+  year      = {2022},
+  publisher = {Elsevier BV},
+  doi       = {10.1016/j.cose.2021.102500},
+  url       = {https://doi.org/10.1016/j.cose.2021.102500}
+}
+
+@inproceedings{ceschin2020need,
+  author    = {Ceschin, Fabricio and Botacin, Marcus and Lüders, Gabriel and Gomes, Heitor Murilo and Oliveira, Luiz and Gregio, Andre},
+  title     = {No Need to Teach New Tricks to Old Malware: Winning an Evasion Challenge with {XOR-Based} Adversarial Samples},
+  booktitle = {Reversing and Offensive-oriented Trends Symposium},
+  pages     = {13--22},
+  year      = {2020},
+  publisher = {ACM},
+  doi       = {10.1145/3433667.3433669},
+  url       = {https://doi.org/10.1145/3433667.3433669}
+}
+
+@article{botacin2020need,
+  author    = {Botacin, Marcus and Ceschin, Fabricio and de Geus, Paulo and Grégio, André},
+  title     = {We Need to Talk About {AntiViruses}: Challenges \& Pitfalls of {AV} Evaluations},
+  journal   = {Computers \& Security},
+  volume    = {95},
+  pages     = {101859},
+  year      = {2020},
+  publisher = {Elsevier BV},
+  doi       = {10.1016/j.cose.2020.101859},
+  url       = {https://doi.org/10.1016/j.cose.2020.101859}
 }
 
 @article{botacin2020leveraging,
@@ -340,27 +351,30 @@
   url       = {https://doi.org/10.1007/s11416-019-00343-w}
 }
 
-@inproceedings{botacin2020near,
-  author    = {Botacin, Marcus and Grégio, André and Alves, Marco Antonio Zanata},
-  title     = {{Near-Memory} \& {In-Memory} Detection of Fileless Malware},
-  booktitle = {The International Symposium on Memory Systems},
-  pages     = {23--38},
+@article{botacin2020self,
+  author    = {Botacin, Marcus and Zanata, Marco and Grégio, André},
+  title     = {The self modifying code {(SMC)-aware} processor {(SAP)}: a security look on architectural impact and support},
+  journal   = {Journal of Computer Virology and Hacking Techniques},
+  volume    = {16},
+  number    = {3},
+  pages     = {185--196},
   year      = {2020},
-  publisher = {ACM},
-  doi       = {10.1145/3422575.3422775},
-  url       = {https://doi.org/10.1145/3422575.3422775}
+  publisher = {Springer Science and Business Media LLC},
+  doi       = {10.1007/s11416-020-00348-w},
+  url       = {https://doi.org/10.1007/s11416-020-00348-w}
 }
 
-@article{botacin2020need,
-  author    = {Botacin, Marcus and Ceschin, Fabricio and de Geus, Paulo and Grégio, André},
-  title     = {We Need to Talk About {AntiViruses}: Challenges \& Pitfalls of {AV} Evaluations},
-  journal   = {Computers \& Security},
-  volume    = {95},
-  pages     = {101859},
-  year      = {2020},
-  publisher = {Elsevier BV},
-  doi       = {10.1016/j.cose.2020.101859},
-  url       = {https://doi.org/10.1016/j.cose.2020.101859}
+@article{sun2022praise,
+  author    = {Sun, Ruimin and Botacin, Marcus and Sapountzis, Nikolaos and Yuan, Xiaoyong and Bishop, Matt and Porter, Donald E. and Li, Xiaolin and Gregio, Andre and Oliveira, Daniela},
+  title     = {A Praise for Defensive Programming: Leveraging Uncertainty for Effective Malware Mitigation},
+  journal   = {IEEE Transactions on Dependable and Secure Computing},
+  volume    = {19},
+  number    = {1},
+  pages     = {353--369},
+  year      = {2022},
+  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+  doi       = {10.1109/tdsc.2020.2986112},
+  url       = {https://doi.org/10.1109/tdsc.2020.2986112}
 }
 
 @inproceedings{botacin2020security,
@@ -375,51 +389,15 @@
   url       = {https://doi.org/10.1007/978-3-030-52683-2_10}
 }
 
-@article{botacin2020self,
-  author    = {Botacin, Marcus and Zanata, Marco and Grégio, André},
-  title     = {The self modifying code {(SMC)-aware} processor {(SAP)}: a security look on architectural impact and support},
-  journal   = {Journal of Computer Virology and Hacking Techniques},
-  volume    = {16},
-  number    = {3},
-  pages     = {185--196},
-  year      = {2020},
-  publisher = {Springer Science and Business Media LLC},
-  doi       = {10.1007/s11416-020-00348-w},
-  url       = {https://doi.org/10.1007/s11416-020-00348-w}
-}
-
-@inproceedings{ceschin2020need,
-  author    = {Ceschin, Fabricio and Botacin, Marcus and Lüders, Gabriel and Gomes, Heitor Murilo and Oliveira, Luiz and Gregio, Andre},
-  title     = {No Need to Teach New Tricks to Old Malware: Winning an Evasion Challenge with {XOR-Based} Adversarial Samples},
-  booktitle = {Reversing and Offensive-oriented Trends Symposium},
-  pages     = {13--22},
+@inproceedings{botacin2020near,
+  author    = {Botacin, Marcus and Grégio, André and Alves, Marco Antonio Zanata},
+  title     = {{Near-Memory} \& {In-Memory} Detection of Fileless Malware},
+  booktitle = {The International Symposium on Memory Systems},
+  pages     = {23--38},
   year      = {2020},
   publisher = {ACM},
-  doi       = {10.1145/3433667.3433669},
-  url       = {https://doi.org/10.1145/3433667.3433669}
-}
-
-@inproceedings{beppler2019ying,
-  author    = {Beppler, Tamy and Botacin, Marcus and Ceschin, Fabrício J. O. and Oliveira, Luiz E. S. and Grégio, André},
-  title     = {L(a)ying in {(Test)Bed}: How Biased Datasets Produce Impractical Results for Actual Malware Families’ Classification},
-  booktitle = {Information Security},
-  series    = {Lecture Notes in Computer Science},
-  pages     = {381--401},
-  year      = {2019},
-  publisher = {Springer International Publishing},
-  doi       = {10.1007/978-3-030-30215-3_19},
-  url       = {https://doi.org/10.1007/978-3-030-30215-3_19}
-}
-
-@inproceedings{botacin2019internet,
-  author    = {Botacin, Marcus and Kalysch, Anatoli and Grégio, André},
-  title     = {The Internet Banking {[in]Security} Spiral: Past, Present, and Future of Online Banking Protection Mechanisms Based on a Brazilian Case Study},
-  booktitle = {Proceedings of the 14th International Conference on Availability, Reliability and Security},
-  pages     = {1--10},
-  year      = {2019},
-  publisher = {ACM},
-  doi       = {10.1145/3339252.3340103},
-  url       = {https://doi.org/10.1145/3339252.3340103}
+  doi       = {10.1145/3422575.3422775},
+  url       = {https://doi.org/10.1145/3422575.3422775}
 }
 
 @inproceedings{botacin2019revenge,
@@ -433,15 +411,15 @@
   url       = {https://doi.org/10.1145/3375894.3375895}
 }
 
-@inproceedings{botacin2019says,
-  author    = {Botacin, Marcus and Galante, Lucas and Ceschin, Fabricio and Santos, Paulo C. and Carro, Luigi and de Geus, Paulo and Gregio, Andre and Alves, Marco A. Z.},
-  title     = {The {AV} says: Your Hardware Definitions Were Updated!},
-  booktitle = {2019 14th International Symposium on Reconfigurable Communication-centric Systems-on-Chip (ReCoSoC)},
-  pages     = {27--34},
+@inproceedings{ceschin2019shallow,
+  author    = {Ceschin, Fabrício and Botacin, Marcus and Gomes, Heitor Murilo and Oliveira, Luiz S. and Grégio, André},
+  title     = {Shallow Security: On the Creation of Adversarial Variants to Evade Machine {Learning-Based} Malware Detectors},
+  booktitle = {Proceedings of the 3rd Reversing and Offensive-oriented Trends Symposium},
+  pages     = {1--9},
   year      = {2019},
-  publisher = {IEEE},
-  doi       = {10.1109/recosoc48741.2019.9034972},
-  url       = {https://doi.org/10.1109/recosoc48741.2019.9034972}
+  publisher = {ACM},
+  doi       = {10.1145/3375894.3375898},
+  url       = {https://doi.org/10.1145/3375894.3375898}
 }
 
 @article{botacin2019vanilla,
@@ -457,53 +435,51 @@
   url       = {https://doi.org/10.1007/s11416-019-00333-y}
 }
 
-@article{botacin2019watches,
-  author    = {Botacin, Marcus and Geus, Paulo Lício De and grégio, André},
-  title     = {Who Watches the Watchmen: A Security-focused Review on Current State-of-the-art Techniques, Tools, and Methods for Systems and Binary Analysis on Modern Platforms},
-  journal   = {ACM Computing Surveys},
-  volume    = {51},
-  number    = {4},
-  pages     = {1--34},
+@inproceedings{botacin2019says,
+  author    = {Botacin, Marcus and Galante, Lucas and Ceschin, Fabricio and Santos, Paulo C. and Carro, Luigi and de Geus, Paulo and Gregio, Andre and Alves, Marco A. Z.},
+  title     = {The {AV} says: Your Hardware Definitions Were Updated!},
+  booktitle = {2019 14th International Symposium on Reconfigurable Communication-centric Systems-on-Chip (ReCoSoC)},
+  pages     = {27--34},
   year      = {2019},
-  publisher = {Association for Computing Machinery (ACM)},
-  doi       = {10.1145/3199673},
-  url       = {https://doi.org/10.1145/3199673}
+  publisher = {IEEE},
+  doi       = {10.1109/recosoc48741.2019.9034972},
+  url       = {https://doi.org/10.1109/recosoc48741.2019.9034972}
 }
 
-@inproceedings{ceschin2019shallow,
-  author    = {Ceschin, Fabrício and Botacin, Marcus and Gomes, Heitor Murilo and Oliveira, Luiz S. and Grégio, André},
-  title     = {Shallow Security: On the Creation of Adversarial Variants to Evade Machine {Learning-Based} Malware Detectors},
-  booktitle = {Proceedings of the 3rd Reversing and Offensive-oriented Trends Symposium},
-  pages     = {1--9},
+@inproceedings{botacin2019internet,
+  author    = {Botacin, Marcus and Kalysch, Anatoli and Grégio, André},
+  title     = {The Internet Banking {[in]Security} Spiral: Past, Present, and Future of Online Banking Protection Mechanisms Based on a Brazilian Case Study},
+  booktitle = {Proceedings of the 14th International Conference on Availability, Reliability and Security},
+  pages     = {1--10},
   year      = {2019},
   publisher = {ACM},
-  doi       = {10.1145/3375894.3375898},
-  url       = {https://doi.org/10.1145/3375894.3375898}
+  doi       = {10.1145/3339252.3340103},
+  url       = {https://doi.org/10.1145/3339252.3340103}
 }
 
-@inproceedings{afonso2018lumus,
-  author    = {Afonso, Vitor and Kalysch, Anatoli and Müller, Tilo and Oliveira, Daniela and Grégio, André and de Geus, Paulo Lício},
-  title     = {Lumus: Dynamically Uncovering Evasive Android Applications},
-  booktitle = {Developments in Language Theory},
+@inproceedings{beppler2019ying,
+  author    = {Beppler, Tamy and Botacin, Marcus and Ceschin, Fabrício J. O. and Oliveira, Luiz E. S. and Grégio, André},
+  title     = {L(a)ying in {(Test)Bed}: How Biased Datasets Produce Impractical Results for Actual Malware Families’ Classification},
+  booktitle = {Information Security},
   series    = {Lecture Notes in Computer Science},
-  pages     = {47--66},
-  year      = {2018},
+  pages     = {381--401},
+  year      = {2019},
   publisher = {Springer International Publishing},
-  doi       = {10.1007/978-3-319-99136-8_3},
-  url       = {https://doi.org/10.1007/978-3-319-99136-8_3}
+  doi       = {10.1007/978-3-030-30215-3_19},
+  url       = {https://doi.org/10.1007/978-3-030-30215-3_19}
 }
 
-@article{botacin2018enhancing,
-  author    = {Botacin, Marcus and Geus, Paulo Lício De and Grégio, André},
-  title     = {Enhancing Branch Monitoring for Security Purposes: From Control Flow Integrity to Malware Analysis and Debugging},
-  journal   = {ACM Transactions on Privacy and Security},
-  volume    = {21},
-  number    = {1},
-  pages     = {1--30},
+@article{ceschin2018need,
+  author    = {Ceschin, Fabricio and Pinage, Felipe and Castilho, Marcos and Menotti, David and Oliveira, Luiz S. and Gregio, Andre},
+  title     = {The Need for Speed: An Analysis of Brazilian Malware Classifiers},
+  journal   = {IEEE Security \& Privacy},
+  volume    = {16},
+  number    = {6},
+  pages     = {31--41},
   year      = {2018},
-  publisher = {Association for Computing Machinery (ACM)},
-  doi       = {10.1145/3152162},
-  url       = {https://doi.org/10.1145/3152162}
+  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+  doi       = {10.1109/msec.2018.2875369},
+  url       = {https://doi.org/10.1109/msec.2018.2875369}
 }
 
 @article{botacin2018other,
@@ -519,17 +495,42 @@
   url       = {https://doi.org/10.1007/s11416-017-0292-8}
 }
 
-@article{ceschin2018need,
-  author    = {Ceschin, Fabricio and Pinage, Felipe and Castilho, Marcos and Menotti, David and Oliveira, Luiz S. and Gregio, Andre},
-  title     = {The Need for Speed: An Analysis of Brazilian Malware Classifiers},
-  journal   = {IEEE Security \& Privacy},
-  volume    = {16},
-  number    = {6},
-  pages     = {31--41},
+@article{botacin2019watches,
+  author    = {Botacin, Marcus and Geus, Paulo Lício De and grégio, André},
+  title     = {Who Watches the Watchmen: A Security-focused Review on Current State-of-the-art Techniques, Tools, and Methods for Systems and Binary Analysis on Modern Platforms},
+  journal   = {ACM Computing Surveys},
+  volume    = {51},
+  number    = {4},
+  pages     = {1--34},
+  year      = {2019},
+  publisher = {Association for Computing Machinery (ACM)},
+  doi       = {10.1145/3199673},
+  url       = {https://doi.org/10.1145/3199673}
+}
+
+@article{botacin2018enhancing,
+  author    = {Botacin, Marcus and Geus, Paulo Lício De and Grégio, André},
+  title     = {Enhancing Branch Monitoring for Security Purposes: From Control Flow Integrity to Malware Analysis and Debugging},
+  journal   = {ACM Transactions on Privacy and Security},
+  volume    = {21},
+  number    = {1},
+  pages     = {1--30},
   year      = {2018},
-  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
-  doi       = {10.1109/msec.2018.2875369},
-  url       = {https://doi.org/10.1109/msec.2018.2875369}
+  publisher = {Association for Computing Machinery (ACM)},
+  doi       = {10.1145/3152162},
+  url       = {https://doi.org/10.1145/3152162}
+}
+
+@inproceedings{afonso2018lumus,
+  author    = {Afonso, Vitor and Kalysch, Anatoli and Müller, Tilo and Oliveira, Daniela and Grégio, André and de Geus, Paulo Lício},
+  title     = {Lumus: Dynamically Uncovering Evasive Android Applications},
+  booktitle = {Developments in Language Theory},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {47--66},
+  year      = {2018},
+  publisher = {Springer International Publishing},
+  doi       = {10.1007/978-3-319-99136-8_3},
+  url       = {https://doi.org/10.1007/978-3-319-99136-8_3}
 }
 
 @inproceedings{sun2017dose,

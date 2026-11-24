@@ -1,10 +1,8 @@
 {{ define "main" }}
-<div class="page-head">
-  <div class="container narrow"><h1>{{ .Title }}</h1></div>
-</div>
-<div class="container narrow page-body">
+<div class="universal-wrapper">
+  <h1 class="page-title">{{ .Title }}</h1>
   <label class="sr-only" for="search-q">Search the site</label>
-  <input id="search-q" type="search" placeholder="Search people, posts and publications…" autofocus autocomplete="off"
+  <input id="search-q" type="search" placeholder="Search..." autofocus autocomplete="off"
          data-index="{{ "index.json" | relURL }}">
   <p id="search-status" class="meta" aria-live="polite"></p>
   <ul id="search-results" class="search-results"></ul>

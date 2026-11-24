@@ -192,7 +192,8 @@ def convert(path: Path) -> list[dict]:
             "slides": e.get("slides", ""),
             "bibtex": entry_to_bibtex(raw[key]) if key in raw else "",
         })
-    items.sort(key=lambda x: (-x["year"], x["title"].lower()))
+    # Newest year first; within a year, keep the order of the .bib file (stable sort).
+    items.sort(key=lambda x: -x["year"])
     return items
 
 

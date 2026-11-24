@@ -1,35 +1,30 @@
 {{ define "main" }}
 {{- $theses := site.Data.generated.theses }}
 {{- $all := resources.Get "bibliography/theses.bib" }}
-<div class="page-head">
-  <div class="container">
-    <h1>{{ .Title }}</h1>
-  </div>
-</div>
-<div class="container page-body">
-  <div class="prose">{{ .Content }}</div>
-  <p><a class="btn btn-outline" href="{{ $all.RelPermalink }}" download="secret-theses.bib">{{ partial "icon.html" "download" }}All BibTeX</a></p>
-  <ul class="thesis-list">
-    {{- range $theses }}
-    {{- $bib := resources.FromString (printf "bib/%s.bib" .key) (printf "%s\n" .bibtex) }}
-    <li class="thesis" id="{{ .key }}">
-      <p>
-        {{- range .authors }}<strong>{{ with .person }}<a class="member" href="{{ (site.GetPage (printf "/people/%s" .)).RelPermalink }}">{{ end }}{{ .full }}{{ with .person }}</a>{{ end }}</strong>{{ end }}.
-        <em>{{ with .url }}<a href="{{ . }}" rel="noopener">{{ end }}{{ .title }}{{ with .url }}</a>{{ end }}</em>.
-        {{ cond (eq .type "phdthesis") "Doutorado" "Mestrado" }}.
-        {{ delimit .advisors ", " }}. {{ .year }}.
-      </p>
-      <div class="pub-actions">
-        <span class="badge">{{ .type_label }}</span>
-        {{- with .url }}<a class="btn-sm" href="{{ . }}" rel="noopener">{{ partial "icon.html" "pdf" }}Full text</a>{{ end }}
-        <button type="button" class="btn-sm cite-btn" data-key="{{ .key }}" data-bib="{{ $bib.RelPermalink }}">{{ partial "icon.html" "quote" }}Cite</button>
-        <template id="bib-{{ .key }}">{{ .bibtex }}</template>
-      </div>
-      {{- with .abstract }}
-      <details class="abstract"><summary>Abstract</summary><p>{{ . }}</p></details>
+<div class="universal-wrapper">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="article-style">
+    {{ .Content }}
+    <ul class="thesis-list">
+      {{- range $theses }}
+      {{- $bib := resources.FromString (printf "bib/%s.bib" .key) (printf "%s\n" .bibtex) }}
+      <li class="thesis" id="{{ .key }}">
+        <p>
+          {{- range .authors }}<strong>{{ with .person }}<a class="member" href="{{ (site.GetPage (printf "/people/%s" .)).RelPermalink }}">{{ end }}{{ .full }}{{ with .person }}</a>{{ end }}</strong>{{ end }}.
+          {{ if .url }}<a href="{{ .url }}" rel="noopener"><em>{{ .title }}</em></a>{{ else }}<em>{{ .title }}</em>{{ end }}.
+          {{ cond (eq .type "phdthesis") "Doutorado" "Mestrado" }}. {{ delimit .advisors ", " }}. {{ .year }}.
+          <span class="pub-links">
+            <button type="button" class="btn-sm cite-btn" data-key="{{ .key }}" data-bib="{{ $bib.RelPermalink }}">{{ partial "icon.html" "quote" }}Cite</button>
+          </span>
+          <template id="bib-{{ .key }}">{{ .bibtex }}</template>
+        </p>
+        {{- with .abstract }}
+        <blockquote><p>{{ . }}</p></blockquote>
+        {{- end }}
+      </li>
       {{- end }}
-    </li>
-    {{- end }}
-  </ul>
+    </ul>
+    <p><a class="btn-sm" href="{{ $all.RelPermalink }}" download="secret-theses.bib">{{ partial "icon.html" "download" }}All BibTeX</a></p>
+  </div>
 </div>
 {{ end }}

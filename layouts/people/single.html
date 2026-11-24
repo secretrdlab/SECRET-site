@@ -1,42 +1,42 @@
 {{ define "main" }}
 {{- $slug := path.Base .File.Dir }}
 {{- $keys := index site.Data.generated.people_pubs $slug | default slice }}
-<div class="container page-body profile">
-  <aside class="profile-card">
+<div class="profile">
+  <div class="profile-card">
     {{- with .Resources.GetMatch "avatar.*" }}
-      {{- $a := .Fill "400x400 Center q80" }}
-      <img class="avatar avatar-lg" src="{{ $a.RelPermalink }}" width="200" height="200" alt="{{ $.Title }}">
-    {{- else }}
-      <span class="avatar avatar-lg avatar-initials">{{ substr .Params.first_name 0 1 }}{{ substr (index (last 1 (split .Params.last_name " ")) 0) 0 1 }}</span>
+      {{- $a := .Fill "540x540 Center q80" }}
+      <img class="avatar avatar-lg" src="{{ $a.RelPermalink }}" width="270" height="270" alt="Avatar">
     {{- end }}
-    <h1>{{ .Title }}</h1>
-    {{ with .Params.role }}<p class="person-role">{{ . }}</p>{{ end }}
-    <p class="org"><a href="https://www.ufpr.br" rel="noopener">Federal University of Paraná (UFPR)</a></p>
+    <div class="portrait-title">
+      <h2>{{ .Title }}</h2>
+      {{ with .Params.role }}<h3>{{ . }}</h3>{{ end }}
+      <h3><a href="https://www.ufpr.br/" rel="noopener">Federal University of Paraná (UFPR)</a></h3>
+    </div>
     {{ partial "person-links.html" . }}
-  </aside>
+  </div>
   <div class="profile-main">
-    {{ with .Params.bio }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
-    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ with .Params.bio }}<div class="article-style">{{ . | markdownify }}</div>{{ end }}
+    {{ with .Content }}<div class="article-style">{{ . }}</div>{{ end }}
     <div class="profile-cols">
       {{- with .Params.interests }}
       <div>
-        <h2>Interests</h2>
-        <ul class="plain">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        <h3>Interests</h3>
+        <ul class="ul-interests">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
       </div>
       {{- end }}
       {{- with .Params.education }}
       <div>
-        <h2>Education</h2>
-        <ul class="education">
+        <h3>Education</h3>
+        <ul class="ul-edu">
           {{- range . }}
-          <li>{{ partial "icon.html" "graduation-cap" }}<div><strong>{{ .course }}{{ with .year }}, {{ . }}{{ end }}</strong><br><span>{{ .institution }}</span></div></li>
+          <li>{{ partial "icon.html" "graduation-cap" }}<div><p class="course">{{ .course }}{{ with .year }}, {{ . }}{{ end }}</p><p class="institution">{{ .institution }}</p></div></li>
           {{- end }}
         </ul>
       </div>
       {{- end }}
     </div>
     {{- if $keys }}
-    <h2>Publications with SECRET</h2>
+    <h3>Publications</h3>
     <ul class="pub-list">
       {{- range (site.Data.generated.publications | append site.Data.generated.theses) }}
         {{- if in $keys .key }}{{ partial "pub-item.html" (dict "p" .) }}{{ end }}

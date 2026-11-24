@@ -35,7 +35,8 @@ disableKinds = ["taxonomy", "term"]
   twitter = "GetResearchDev"
   # Order in which member groups are shown on the home page.
   peopleGroups = ["Faculty", "PhD Students", "MSc Students", "Undergraduate Students", "Alumni / Past Visitors"]
-  recentPublications = 5
+  # Number of papers listed in the home page's "Recent Publications" band (0 = buttons only, like the original site).
+  recentPublications = 0
 
 [menus]
   [[menus.main]]

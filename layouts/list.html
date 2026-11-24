@@ -1,11 +1,9 @@
 {{ define "main" }}
-<div class="page-head">
-  <div class="container"><h1>{{ .Title }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</div>
-</div>
-<div class="container page-body">
-  <div class="prose">{{ .Content }}</div>
-  <ul class="post-list">
-    {{- range .Pages }}<li><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2></li>{{ end }}
-  </ul>
+<div class="universal-wrapper">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="article-style">
+    {{ .Content }}
+    <ul>{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul>
+  </div>
 </div>
 {{ end }}

@@ -1,22 +1,25 @@
 {{ define "main" }}
 {{- $s := site.Data.site }}
 
-<section class="hero" style="--bg: url('{{ partial "bgimage.html" $s.hero.background }}')">
-  <div class="container">
+<section id="hero" class="hsec hsec-image hsec-hero">
+  <div class="hsec-bg" style="background-image: url('{{ partial "bgimage.html" $s.hero.background }}'); filter: brightness(.6)"></div>
+  <div class="container center">
     <h1 class="hero-title">{{ $s.hero.title | markdownify }}</h1>
     <p class="hero-sub"><strong>{{ $s.hero.subtitle }}</strong></p>
   </div>
 </section>
 
-<section id="about" class="section">
+<section id="about" class="hsec hsec-alt">
   <div class="container">
-    <h2 class="section-title">{{ $s.about.title }}</h2>
-    <p class="section-sub">{{ $s.about.subtitle | markdownify }}</p>
+    <div class="section-heading">
+      <h1>{{ $s.about.title }}</h1>
+      <p>{{ $s.about.subtitle | markdownify }}</p>
+    </div>
     <div class="features">
       {{- range $s.about.items }}
       <div class="feature">
         <div class="feature-icon">{{ partial "icon.html" .icon }}</div>
-        <h3>{{ .name }}</h3>
+        <div class="section-subheading">{{ .name }}</div>
         <p>{{ .description | markdownify }}</p>
       </div>
       {{- end }}
@@ -24,22 +27,24 @@
   </div>
 </section>
 
-<section class="section section-tight">
+<section class="hsec">
   <div class="container university">
-    {{ partial "img.html" (dict "src" $s.university.logo "width" 666 "alt" "UFPR logo" "class" "university-logo") }}
+    <div>{{ partial "img.html" (dict "src" $s.university.logo "width" 666 "alt" "UFPR Logo" "class" "university-logo") }}</div>
     <h2>{{ $s.university.text }}</h2>
   </div>
 </section>
 
-<section id="people" class="section section-alt">
+<section id="people" class="hsec hsec-alt">
   <div class="container">
-    <h2 class="section-title">{{ $s.people.title }}</h2>
-    <p class="section-sub">{{ $s.people.subtitle }}</p>
+    <div class="section-heading">
+      <h1>{{ $s.people.title }}</h1>
+      <p>{{ $s.people.subtitle }}</p>
+    </div>
     {{- $people := (site.GetPage "/people").Pages }}
     {{- range site.Params.peopleGroups }}
       {{- $members := where $people "Params.group" . }}
       {{- if $members }}
-      <h3 class="group-title">{{ . }}</h3>
+      <h2 class="group-title">{{ . }}</h2>
       <div class="people-grid">
         {{- range sort $members "Params.last_name" }}{{ partial "person-card.html" . }}{{ end }}
       </div>
@@ -48,22 +53,27 @@
   </div>
 </section>
 
-<section id="awards" class="section section-image" style="--bg: url('{{ partial "bgimage.html" $s.awards.background }}')">
+<section id="awards" class="hsec hsec-image">
+  <div class="hsec-bg" style="background-image: url('{{ partial "bgimage.html" $s.awards.background }}'); filter: brightness(.7)"></div>
   <div class="container">
-    <h2 class="section-title">{{ $s.awards.title }}</h2>
-    <p class="section-sub">{{ $s.awards.subtitle }}</p>
-    <p class="center"><a class="btn btn-lg" href="{{ "/awards/" | relURL }}">Read More</a></p>
+    <div class="section-heading">
+      <h1>{{ $s.awards.title }}</h1>
+      <p>{{ $s.awards.subtitle }}</p>
+    </div>
+    <p class="center"><a class="btn" href="{{ "/awards/" | relURL }}">Read More</a></p>
   </div>
 </section>
 
-<section id="partners" class="section">
+<section id="partners" class="hsec hsec-alt">
   <div class="container">
-    <h2 class="section-title">{{ $s.partners.title }}</h2>
-    <p class="section-sub">{{ $s.partners.subtitle }}</p>
+    <div class="section-heading">
+      <h1>{{ $s.partners.title }}</h1>
+      <p>{{ $s.partners.subtitle }}</p>
+    </div>
     <ul class="partners">
       {{- range $p := site.Data.partners }}
       <li>
-        {{- $img := partial "img.html" (dict "src" (printf "images/partners/%s" $p.logo) "width" 360 "alt" $p.name) }}
+        {{- $img := partial "img.html" (dict "src" (printf "images/partners/%s" $p.logo) "width" 300 "alt" $p.name) }}
         {{- with $p.url }}<a href="{{ . }}" rel="noopener" title="{{ $p.name }}">{{ $img }}</a>{{ else }}{{ $img }}{{ end }}
       </li>
       {{- end }}
@@ -71,33 +81,35 @@
   </div>
 </section>
 
-<section class="section section-image" style="--bg: url('{{ partial "bgimage.html" $s.publications.background }}')">
+<section id="publications" class="hsec hsec-image">
+  <div class="hsec-bg" style="background-image: url('{{ partial "bgimage.html" $s.publications.background }}'); filter: brightness(.7)"></div>
   <div class="container">
-    <h2 class="section-title">{{ $s.publications.title }}</h2>
-    <p class="section-sub">{{ $s.publications.subtitle }}</p>
-    <ul class="pub-list pub-list-compact">
-      {{- range first site.Params.recentPublications site.Data.generated.publications }}
-        {{ partial "pub-item.html" (dict "p" . "compact" true) }}
-      {{- end }}
+    <div class="section-heading">
+      <h1>{{ $s.publications.title }}</h1>
+      <p>{{ $s.publications.subtitle }}</p>
+    </div>
+    {{- with site.Params.recentPublications }}
+    <ul class="pub-list pub-list-home">
+      {{- range first . site.Data.generated.publications }}{{ partial "pub-item.html" (dict "p" . "compact" true) }}{{ end }}
     </ul>
+    {{- end }}
     <p class="center">
-      <a class="btn btn-lg" href="{{ "/publication/" | relURL }}">Publications</a>
-      <a class="btn btn-lg" href="{{ "/thesis-dissertations/" | relURL }}">Thesis and Dissertations</a>
+      <a class="btn" href="{{ "/publication/" | relURL }}">Publications</a>
+      <a class="btn" href="{{ "/thesis-dissertations/" | relURL }}">Thesis and Dissertations</a>
     </p>
   </div>
 </section>
 
-<section id="contact" class="section section-image" style="--bg: url('{{ partial "bgimage.html" $s.contact.background }}')">
+<section id="contact" class="hsec hsec-image">
   {{- $c := $s.contact }}
+  <div class="hsec-bg" style="background-image: url('{{ partial "bgimage.html" $c.background }}'); filter: brightness(.5)"></div>
   <div class="container contact">
-    <h2 class="section-title">{{ $c.title }}</h2>
+    <div class="section-heading"><h1>{{ $c.title }}</h1></div>
     <p><strong>Mail:</strong> <a href="mailto:{{ $c.email }}">{{ $c.email }}</a></p>
-    <address>
-      {{ partial "icon.html" "map" }}
-      <a href="https://www.openstreetmap.org/?mlat={{ $c.latitude }}&amp;mlon={{ $c.longitude }}#map=17/{{ $c.latitude }}/{{ $c.longitude }}" rel="noopener">
-        {{ $c.street }}, {{ $c.city }}, {{ $c.region }} {{ $c.postcode }}, {{ $c.country }}
-      </a>
-    </address>
+    <p class="address">{{ partial "icon.html" "map" }}<span>{{ $c.street }}, {{ $c.city }}, {{ $c.region }} {{ $c.postcode }}</span></p>
+    {{- $d := 0.012 }}
+    <iframe class="map" title="Map: {{ $c.street }}" loading="lazy"
+      src="https://www.openstreetmap.org/export/embed.html?bbox={{ sub $c.longitude (mul $d 1.8) }}%2C{{ sub $c.latitude $d }}%2C{{ add $c.longitude (mul $d 1.8) }}%2C{{ add $c.latitude $d }}&amp;layer=mapnik&amp;marker={{ $c.latitude }}%2C{{ $c.longitude }}"></iframe>
   </div>
 </section>
 {{ end }}
