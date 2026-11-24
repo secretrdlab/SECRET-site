@@ -1,4 +1,4 @@
-# Local helpers. Jenkins runs the same steps (see Jenkinsfile).
+# Local helpers. GitHub Actions runs the same steps (see .github/workflows/pages.yml).
 PY := .venv/bin/python
 
 .PHONY: setup data serve build check clean
@@ -17,7 +17,7 @@ build: data       ## production build into public/
 	rm -rf public
 	hugo --gc --minify
 
-check: build      ## validate BibTeX and check links, like CI
+check: build      ## validate BibTeX and check links, like GitHub Actions
 	$(PY) scripts/bib2data.py --check
 	$(PY) scripts/check_site.py public
 

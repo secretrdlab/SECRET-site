@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Post-build sanity check: every internal link/src in public/ must resolve to a file.
 
-    python3 scripts/check_site.py public
+    python3 scripts/check_site.py public                # site served at the domain root
+    python3 scripts/check_site.py public /SECRET-site    # site served under a sub-path
 """
 import re
 import sys
@@ -24,7 +25,8 @@ class Links(HTMLParser):
                 self.urls.append(a[k])
 
 
-def main(root: Path) -> int:
+def main(root: Path, base_path: str = "") -> int:
+    base_path = base_path.rstrip("/")
     pages = {}
     for f in root.rglob("*.html"):
         p = Links()
@@ -37,6 +39,8 @@ def main(root: Path) -> int:
             if u.scheme or url.startswith(("mailto:", "tel:", "//", "data:")):
                 continue
             path = unquote(u.path)
+            if base_path and path.startswith(base_path + "/"):
+                path = path[len(base_path):]
             if not path:  # same-page anchor
                 continue
             target = (root / path.lstrip("/")) if path.startswith("/") else (f.parent / path)
@@ -57,4 +61,4 @@ def main(root: Path) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(Path(sys.argv[1] if len(sys.argv) > 1 else "public")))
+    sys.exit(main(Path(sys.argv[1] if len(sys.argv) > 1 else "public"), sys.argv[2] if len(sys.argv) > 2 else ""))

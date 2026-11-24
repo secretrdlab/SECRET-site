@@ -3,7 +3,8 @@
 Source of <https://secret.seg.br> — SECurity & Reverse Engineering Team, UFPR.
 
 Plain [Hugo](https://gohugo.io) with a small built-in theme (no Hugo Blox, no Go modules), YAML data files,
-and **BibTeX as the single source of truth for publications**. Jenkins validates, builds and deploys every push.
+and **BibTeX as the single source of truth for publications**. GitHub Actions validates, builds and publishes
+every push to GitHub Pages.
 
 ## Where things live
 
@@ -69,38 +70,28 @@ Needs Hugo **extended ≥ 0.146** and Python 3.
 ```sh
 make setup      # once: creates .venv with bibtexparser + PyYAML
 make serve      # http://localhost:1313 — run `make data` again after editing a .bib file
-make check      # same validation + link check as Jenkins
+make check      # same validation + link check as GitHub Actions
 ```
 
-## Hosting and Jenkins
+## Publishing (GitHub Actions + GitHub Pages)
 
-The site is hosted on **GitHub Pages** from the `gh-pages` branch of this repository.
-Nobody edits that branch by hand: Jenkins rebuilds it from `main`.
-
-`Jenkinsfile` runs: **Setup** (downloads the pinned Hugo, creates the venv) → **Validate BibTeX** →
-**Build** → **Check** (broken internal links) → **Archive** (`site.tar.gz`) →
-**Deploy** (only for `main`: force-pushes the built site to `gh-pages`).
+Every commit to `main` (from your computer or from GitHub's web editor) runs
+`.github/workflows/pages.yml`, which validates the BibTeX, builds the site, checks links,
+and publishes it to GitHub Pages. It takes about a minute; follow it in the **Actions** tab.
+If a step fails (usually a typo in a `.bib` file), nothing is published and the live site stays
+as it was. The error message in the failed step says which entry and field to fix.
+Pull requests are built and checked but not published.
 
 One-time setup:
 
-1. Create a key pair: `ssh-keygen -t ed25519 -N "" -C jenkins-secret-site -f ~/.ssh/secret-site-gh`
-2. In GitHub, go to **Settings → Deploy keys → Add deploy key**, paste `secret-site-gh.pub`,
-   and tick **Allow write access**.
-3. In Jenkins, go to **Manage Jenkins → Credentials → Add** and choose
-   **SSH Username with private key**: ID `secret-site-github-key`, username `git`, private key = `secret-site-gh`.
-4. Create a *Pipeline* job: *Pipeline script from SCM* → Git →
-   `https://github.com/secretrdlab/SECRET-site.git`, branch `*/main`, script path `Jenkinsfile`.
-   Run **Build Now** once; this creates the `gh-pages` branch.
-5. In GitHub, go to **Settings → Pages**: Source *Deploy from a branch*, branch `gh-pages`, folder `/ (root)`.
-6. Point the domain to GitHub, then tick **Enforce HTTPS** in Settings → Pages:
-   - `secret.seg.br` A records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `secret.seg.br` AAAA records: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
-   - `www.secret.seg.br` CNAME: `secretrdlab.github.io`
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+2. Re-run the workflow (**Actions → Build and publish site → Run workflow**). The site appears at
+   `https://secretrdlab.github.io/SECRET-site/`.
+3. When ready to switch the domain, set these DNS records for `secret.seg.br` (at registro.br):
+   - A: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - AAAA: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - `www` CNAME: `secretrdlab.github.io`
+4. **Settings → Pages → Custom domain:** `secret.seg.br`, save, then run the workflow once more so
+   links use the new address. Tick **Enforce HTTPS** once GitHub has issued the certificate.
 
-To preview before the domain is switched, run the job with **Build with Parameters** and
-`BASE_URL = https://secretrdlab.github.io/SECRET-site/`. That build writes no `CNAME`, so the site
-appears at that address. Building again with the default `BASE_URL` sets the custom domain back.
-
-Jenkins checks GitHub for new commits every 5 minutes. The agent needs `bash`, `curl`, `tar`, `git`,
-`ssh` and `python3` (with `venv`), on Linux or macOS. To upgrade Hugo, change `HUGO_VERSION`
-in the `Jenkinsfile` and run `make check` locally first.
+To upgrade Hugo, change `HUGO_VERSION` in `.github/workflows/pages.yml` and run `make check` locally first.
